@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMusic } from '@fortawesome/free-solid-svg-icons'
+import { faMusic} from '@fortawesome/free-solid-svg-icons'
 import { Button } from 'reactstrap';
 
 
