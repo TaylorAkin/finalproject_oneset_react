@@ -11,6 +11,7 @@ class RegisterComponent extends React.Component {
     constructor(props){
         super(props)
         this.state= {
+            name: '',
             email: '' ,
             password: '',
         }
@@ -19,11 +20,15 @@ class RegisterComponent extends React.Component {
     }
         SubmitHandler(e) {
         // post request for laravel api call
-        axios.post('http://127.0.0.1:8000/api/register' , {email: this.state.email , password:this.state.password})
+        axios.post('http://127.0.0.1:8000/api/register' ,{
+            name: this.state.name,
+            email: this.state.email , 
+            password:this.state.password})
           .then(response => { const data = response.data; 
             this.setState({ data : data});
             // console.log(this.state.data)
-            this.props.token(this.state.data);
+            localStorage.setItem('token', response.data.token)
+            this.props.apitoken(this.state.data);
           });
           e.preventDefault();
 

@@ -26,6 +26,24 @@ class App extends React.Component {
 
   }
 
+  componentDidMount() {
+
+    var getStorage = localStorage.getItem(this.getTokenfromChildComponent);
+    if (getStorage) {
+
+        getStorage = JSON.parse(getStorage);
+        this.setState(state => ({
+  
+
+        }));
+
+    }
+
+    else {
+
+    }
+}
+
   render() {
     // console.log(this.state.data);
     if (!this.state.data) {
@@ -34,9 +52,10 @@ class App extends React.Component {
 
         <div className="App">
           <header className="App-header">
+   
+            {/* <RegisterComponent apitoken = {this.getTokenfromChildComponent} user = {this.props.user} /> */}
+            <LoginComponent token={this.getTokenfromChildComponent} user = {this.props.user}/>
 
-            <RegisterComponent apitoken = {this.props.apitoken} user = {this.props.user}/>
-            {/* <LoginComponent token={this.getTokenfromChildComponent} user = {this}/> */}
 
 
           </header>
