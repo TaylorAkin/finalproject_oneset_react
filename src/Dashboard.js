@@ -1,5 +1,7 @@
 import React from 'react';
 import LogoutComponent from './Logout';
+import HeaderComponent from './Header';
+import FooterComponent from './Footer';
 
 
 
@@ -20,7 +22,10 @@ render(){
 
     <React.Fragment>
 
-        <LogoutComponent apitoken = {this.props.apitoken} user = {this.props.user}/>
+        <HeaderComponent apitoken = {this.props.apitoken} user = {this.props.user}/>
+       
+        <FooterComponent apitoken = {this.props.apitoken} user = {this.props.user}/>
+
         
 
     </React.Fragment>
