@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMusic } from '@fortawesome/free-solid-svg-icons'
+import { Button } from 'reactstrap';
 
 
 
@@ -43,7 +44,7 @@ class LoginComponent extends React.Component {
         return(
            <React.Fragment>
 
-            {/* <img style={{height:'10rem'}}  src='/images/note.png' value='Tmail' alt='Tmail'></img> */}
+          <Button onClick = {this.props.switch} color="secondary" className="fixed-top float-right">Register</Button>{' '}
             <FontAwesomeIcon icon={faMusic} size='9x'/>
             <h1 className='text-center display-2'>OneSet</h1>
 

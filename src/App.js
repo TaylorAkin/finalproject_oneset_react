@@ -14,10 +14,17 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      login_view:true,
       token: '',
 
     }
     this.getTokenfromChildComponent = this.getTokenfromChildComponent.bind(this);
+    this.switch = this.switch.bind(this);
+  }
+
+  switch(){
+  
+    this.setState({login_view: !this.state.login_view})
   }
 
   getTokenfromChildComponent(data) {
@@ -53,8 +60,9 @@ class App extends React.Component {
         <div className="App">
           <header className="App-header">
    
-            {/* <RegisterComponent apitoken = {this.getTokenfromChildComponent} user = {this.props.user} /> */}
-            <LoginComponent token={this.getTokenfromChildComponent} user = {this.props.user}/>
+           {this.state.login_view ? 
+           <RegisterComponent switch = {this.switch} apitoken = {this.getTokenfromChildComponent} user = {this.props.user} /> :
+           <LoginComponent switch = {this.switch} token={this.getTokenfromChildComponent} user = {this.props.user}/>}
 
 
 
