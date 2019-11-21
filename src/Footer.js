@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch,faWifi, faHome} from '@fortawesome/free-solid-svg-icons'
+import { faSearch,faWifi, faHome, faUserCircle} from '@fortawesome/free-solid-svg-icons'
+import { MDBChipsInput } from 'mdbreact';
 
 class FooterComponent extends React.Component {
 
@@ -25,24 +26,24 @@ class FooterComponent extends React.Component {
         <React.Fragment>
             <div className = "container bg-dark fixed-bottom">
                 <div className = "row">
-                    <div className = "col-3"> 
-                        <Button>
+                    <div className = "col-3 px-0"> 
+                        <Button className = 'btn-mdb-color'>
                         <FontAwesomeIcon icon={faHome} size='2x'/>
                         </Button>
                     </div>
-                    <div className = "col-3 mt-1"> 
-                        <Button>
+                    <div className = "col-3 px-0"> 
+                        <Button className = 'btn-mdb-color'>
                             <FontAwesomeIcon icon={faSearch} size='2x'/>
                         </Button>
                     </div>
-                    <div className = "col-3"> 
-                        <Button>
+                    <div className = "col-3 px-0"> 
+                        <Button className = 'btn-mdb-color'>
                             <FontAwesomeIcon icon={faWifi} size='2x'/>
                         </Button>
                     </div>
-                    <div className = "col-3"> 
-                        <Button>
-                             <img src="/images/avatar.jpeg" className="rounded float-right img-thumbnail mt-1" alt="avatar"/>
+                    <div className = "col-3 px-0"> 
+                        <Button className = 'btn-mdb-color'>
+                            <FontAwesomeIcon icon={faUserCircle} size='2x'/>
                         </Button> 
                     </div>
 

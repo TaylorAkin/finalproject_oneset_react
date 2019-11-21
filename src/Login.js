@@ -23,7 +23,8 @@ class LoginComponent extends React.Component {
         axios.post('http://127.0.0.1:8000/api/login' , {email: this.state.email , password:this.state.password})
           .then(response => { const data = response.data; 
             this.setState({ data : data});
-            // console.log(this.state.data)
+
+            console.log(this.state.data)
             this.props.token(this.state.data);
           });
           e.preventDefault();
@@ -44,7 +45,7 @@ class LoginComponent extends React.Component {
         return(
            <React.Fragment>
 
-          <Button onClick = {this.props.switch} color="secondary" className="fixed-top float-right">Register</Button>{' '}
+          <Button onClick = {this.props.switch} className="fixed-top btn-mdb-color">Register</Button>{' '}
             <FontAwesomeIcon icon={faMusic} size='9x'/>
             <h1 className='text-center display-2'>OneSet</h1>
 

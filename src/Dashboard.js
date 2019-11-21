@@ -2,6 +2,7 @@ import React from 'react';
 import LogoutComponent from './Logout';
 import HeaderComponent from './Header';
 import FooterComponent from './Footer';
+import Profile from './Profile';
 
 
 
@@ -23,6 +24,8 @@ render(){
     <React.Fragment>
 
         <HeaderComponent apitoken = {this.props.apitoken} user = {this.props.user}/>
+
+        <Profile apitoken = {this.props.apitoken} user = {this.props.user}/>
        
         <FooterComponent apitoken = {this.props.apitoken} user = {this.props.user}/>
 

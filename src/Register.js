@@ -50,7 +50,7 @@ class RegisterComponent extends React.Component {
            <React.Fragment>
 
             {/* <button onClick = {this.props.switch} className="btn btn-primary"/> */}
-            <Button onClick = {this.props.switch} color="secondary" className="fixed-top">Login</Button>{' '}
+            <Button onClick = {this.props.switch} className="fixed-top fixed-top btn-mdb-color">Login</Button>{' '}
             <FontAwesomeIcon icon={faMusic} size='9x'/>
 
             <h1 className='text-center display-2'>OneSet</h1>
