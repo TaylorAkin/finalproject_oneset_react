@@ -14,12 +14,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      login_view:true,
-      token: '',
+      login_view: true,
+
 
     }
     this.getTokenfromChildComponent = this.getTokenfromChildComponent.bind(this);
     this.switch = this.switch.bind(this);
+    this.setLocalStorage = this.setLocalStorage.bind(this);
   }
 
   switch(){
@@ -32,23 +33,16 @@ class App extends React.Component {
     this.setState({ data: data })
 
   }
+  async setLocalStorage(data){
+
+    await this.setState({data:JSON.parse(data)});
+
+  }
 
   componentDidMount() {
 
-    var getStorage = localStorage.getItem(this.getTokenfromChildComponent);
-    if (getStorage) {
+    this.setLocalStorage(localStorage.getItem('data'));
 
-        getStorage = JSON.parse(getStorage);
-        this.setState(state => ({
-  
-
-        }));
-
-    }
-
-    else {
-
-    }
 }
 
   render() {
@@ -76,7 +70,11 @@ class App extends React.Component {
       // console.log(this.state.data.user);
       return(
         
-        <DashboardComponent apitoken = {this.state.data.token} user = {this.state.data.user} />
+        <DashboardComponent
+         apitoken = {this.state.data.token} 
+        user = {this.state.data.user} 
+        data={this.state.data}
+        />
 
       );
     }

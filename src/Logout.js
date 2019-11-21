@@ -19,6 +19,7 @@ class LogoutComponent extends React.Component {
         SubmitHandler(e) {
         // post request for laravel api call
         // console.log('Bearer ' + this.props.apitoken);
+        localStorage.removeItem('data');
         axios({
             method: 'get',
             url: 'http://127.0.0.1:8000/api/logout',
@@ -36,7 +37,6 @@ class LogoutComponent extends React.Component {
                 
 
             });
-
 
             e.preventDefault();
 

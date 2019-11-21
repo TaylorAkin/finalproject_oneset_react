@@ -8,14 +8,36 @@ class ProfileComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            bio: ""
+
 
         }
+        this.changeValue = this.changeValue.bind(this);
+        this.getBio =this.getBio.bind(this); 
+        this.updateBio =this.updateBio.bind(this); 
     }
 
+    
+    changeValue(e){
+        const target = e.target;
+        const value = target.value;
+        const name = target.name;
+        console.log(e.target);
+        this.setState({[name]:value})
+    }
+
+ updateBio(e){
 
 
+    }
 
+    async getBio(){
 
+        await this.setState({bio:this.props.user.profile[0].bio})
+    }
+    componentDidMount(){
+        this.getBio()
+    }
 
     render() {
         return (
@@ -29,7 +51,7 @@ class ProfileComponent extends React.Component {
 
                         </div>
                         <div className='col-4 border rounded-circle'>
-                            `   "profile image"
+                               "profile image"
                     </div>
                         <div className='col-4'>
 
@@ -44,9 +66,8 @@ class ProfileComponent extends React.Component {
                     </h1>
                     </div>
                 </div>
-
-                <MDBInput type="textarea" label="Bio" rows="2" icon="pencil-alt" />
-
+                <MDBInput name="bio" onChange = {this.changeValue} onBlur = {this.updateBio} type="textarea" label="Bio" rows="2" icon="pencil-alt" value = {this.state.bio} />
+                
                 {/* <div className = 'container'>
                     <div className="form-group shadow-textarea">
                         <label htmlFor="exampleFormControlTextarea6" className = 'text-center mx-auto'></label>

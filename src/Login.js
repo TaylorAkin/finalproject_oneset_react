@@ -26,7 +26,9 @@ class LoginComponent extends React.Component {
 
             console.log(this.state.data)
             this.props.token(this.state.data);
+            localStorage.setItem('data', JSON.stringify(response.data))
           });
+
           e.preventDefault();
 
         }
