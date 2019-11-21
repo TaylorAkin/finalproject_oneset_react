@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch,faWifi, faHome, faUserCircle} from '@fortawesome/free-solid-svg-icons'
-import { MDBChipsInput } from 'mdbreact';
+
 
 class FooterComponent extends React.Component {
 

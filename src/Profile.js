@@ -1,6 +1,6 @@
 import React from 'react';
-// import axios from 'axios';
 import { MDBInput } from "mdbreact";
+// import { MDBChipsInput } from 'mdbreact';
 
 
 class ProfileComponent extends React.Component {
@@ -26,15 +26,24 @@ class ProfileComponent extends React.Component {
         this.setState({[name]:value})
     }
 
- updateBio(e){
 
-
+    updateBio(e){
+        
+        
     }
-
+    
+    //gets bio from DB. If the user has a profile, it gets it, else the value of bio is nothing. 
     async getBio(){
+            if(this.props.user.profile){
 
-        await this.setState({bio:this.props.user.profile[0].bio})
+                await this.setState({bio:this.props.user.profile[0].bio});
+
+            }else{
+                this.setState({bio: ""});
+            }
     }
+
+
     componentDidMount(){
         this.getBio()
     }
