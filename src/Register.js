@@ -27,8 +27,9 @@ class RegisterComponent extends React.Component {
             password:this.state.password})
           .then(response => { const data = response.data; 
             this.setState({ data : data});
-            // console.log(this.state.data)
-            localStorage.setItem('token', response.data.token)
+            console.log(this.state.data)
+            // localStorage.setItem('token', response.data.token)
+            localStorage.setItem('data', JSON.stringify( response.data))
             this.props.apitoken(this.state.data);
           });
           e.preventDefault();
@@ -50,7 +51,7 @@ class RegisterComponent extends React.Component {
            <React.Fragment>
 
             {/* <button onClick = {this.props.switch} className="btn btn-primary"/> */}
-            <Button onClick = {this.props.switch} color="secondary" className="fixed-top">Login</Button>{' '}
+            <Button onClick = {this.props.switch} className="fixed-top fixed-top btn-mdb-color">Login</Button>{' '}
             <FontAwesomeIcon icon={faMusic} size='9x'/>
 
             <h1 className='text-center display-2'>OneSet</h1>
