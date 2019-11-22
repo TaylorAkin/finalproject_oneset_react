@@ -61,6 +61,9 @@ class ProfileComponent extends React.Component {
                 console.log(JSON.parse(res.config.data));
            
                     this.setState({ bio: JSON.parse(res.config.data).bio});
+
+                    //FIX LOCAL STORAGE SO IT UPDATES ON REFRESH
+                    // localStorage.setItem('data' , data)
             });
 
         e.preventDefault();
@@ -95,6 +98,10 @@ class ProfileComponent extends React.Component {
                     </div>
                 </div>
                 <MDBInput name="bio" onChange={this.changeValue} onBlur={this.updateBio} type="textarea" label="Bio" rows="2" icon="pencil-alt" value={this.state.bio} />
+
+
+
+
 
                 {/* <div className = 'container'>
                     <div className="form-group shadow-textarea">
