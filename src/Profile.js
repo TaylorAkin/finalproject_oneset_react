@@ -1,6 +1,7 @@
 import React from 'react';
-// import axios from 'axios';
 import { MDBInput } from "mdbreact";
+import axios from 'axios';
+// import { MDBChipsInput } from 'mdbreact';
 
 
 class ProfileComponent extends React.Component {
@@ -13,30 +14,60 @@ class ProfileComponent extends React.Component {
 
         }
         this.changeValue = this.changeValue.bind(this);
-        this.getBio =this.getBio.bind(this); 
-        this.updateBio =this.updateBio.bind(this); 
+        this.getBio = this.getBio.bind(this);
+        this.updateBio = this.updateBio.bind(this);
     }
 
-    
-    changeValue(e){
+
+    changeValue(e) {
         const target = e.target;
         const value = target.value;
         const name = target.name;
         console.log(e.target);
-        this.setState({[name]:value})
+        this.setState({ [name]: value })
     }
 
- updateBio(e){
 
 
+    //gets bio from DB. If the user has a profile, it gets it, else the value of bio is nothing. 
+    async getBio() {
+        if (this.props.user.profile[0]) {
+
+            await this.setState({ bio: this.props.user.profile[0].bio });
+
+        } else {
+            this.setState({ bio: "Add a bio" });
+        }
     }
 
-    async getBio(){
 
-        await this.setState({bio:this.props.user.profile[0].bio})
-    }
-    componentDidMount(){
+    componentDidMount() {
         this.getBio()
+    }
+
+    
+    updateBio(e) {
+        console.log('ta');
+        var data = {bio : this.state.bio};
+       axios.post('http://127.0.0.1:8000/api/profile/' + this.props.user.id, data, {
+            method:"POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + this.props.apitoken,
+            },
+        })
+            .then(res => {
+                console.log(JSON.parse(res.config.data));
+           
+                    this.setState({ bio: JSON.parse(res.config.data).bio});
+
+                    //FIX LOCAL STORAGE SO IT UPDATES ON REFRESH
+                    // localStorage.setItem('data' , data)
+            });
+
+        e.preventDefault();
+
     }
 
     render() {
@@ -51,7 +82,7 @@ class ProfileComponent extends React.Component {
 
                         </div>
                         <div className='col-4 border rounded-circle'>
-                               "profile image"
+                            "profile image"
                     </div>
                         <div className='col-4'>
 
@@ -62,12 +93,16 @@ class ProfileComponent extends React.Component {
                 <div className='container'>
                     <div className='row'>
                         <h1 className='text-center mx-auto'>
-                          {this.props.user.name}
-                    </h1>
+                            {this.props.user.name}
+                        </h1>
                     </div>
                 </div>
-                <MDBInput name="bio" onChange = {this.changeValue} onBlur = {this.updateBio} type="textarea" label="Bio" rows="2" icon="pencil-alt" value = {this.state.bio} />
-                
+                <MDBInput name="bio" onChange={this.changeValue} onBlur={this.updateBio} type="textarea" label="Bio" rows="2" icon="pencil-alt" value={this.state.bio} />
+
+
+
+
+
                 {/* <div className = 'container'>
                     <div className="form-group shadow-textarea">
                         <label htmlFor="exampleFormControlTextarea6" className = 'text-center mx-auto'></label>

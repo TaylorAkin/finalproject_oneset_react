@@ -26,6 +26,7 @@ class LoginComponent extends React.Component {
 
             console.log(this.state.data)
             this.props.token(this.state.data);
+            console.log(response.data);
             localStorage.setItem('data', JSON.stringify(response.data))
           });
 
@@ -47,7 +48,7 @@ class LoginComponent extends React.Component {
         return(
            <React.Fragment>
 
-          <Button onClick = {this.props.switch} className="fixed-top btn-mdb-color">Register</Button>{' '}
+          
             <FontAwesomeIcon icon={faMusic} size='9x'/>
             <h1 className='text-center display-2'>OneSet</h1>
 
@@ -63,6 +64,9 @@ class LoginComponent extends React.Component {
                 </div>
                 <button type="submit" className="btn btn-primary">Login</button>
             </form>
+
+            <h1 className='text-center'>Need a account?</h1>
+            <Button onClick = {this.props.switch} className="btn-mdb-color">Register</Button>{' '}
 
      
 
