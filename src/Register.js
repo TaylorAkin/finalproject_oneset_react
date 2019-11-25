@@ -9,76 +9,116 @@ import { Button } from 'reactstrap';
 
 class RegisterComponent extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state= {
+        this.state = {
             name: '',
-            email: '' ,
+            email: '',
             password: '',
+            role: true,
         }
-        this.SubmitHandler=this.SubmitHandler.bind(this);
-        this.OnChangeHandler=this.OnChangeHandler.bind(this);
+        this.SubmitHandler = this.SubmitHandler.bind(this);
+        this.OnChangeHandler = this.OnChangeHandler.bind(this);
+        this.OnRoleChangeHandler = this.OnRoleChangeHandler.bind(this);
     }
-        SubmitHandler(e) {
+    SubmitHandler(e) {
         // post request for laravel api call
-        axios.post('http://127.0.0.1:8000/api/register' ,{
+
+        //set the state of role, if you clicked on musicain or venue
+
+        axios.post('http://127.0.0.1:8000/api/register', {
             name: this.state.name,
-            email: this.state.email , 
-            password:this.state.password})
-          .then(response => { const data = response.data; 
-            this.setState({ data : data});
-            console.log(this.state.data)
-            // localStorage.setItem('token', response.data.token)
-            localStorage.setItem('data', JSON.stringify( response.data))
-            this.props.apitoken(this.state.data);
-          });
-          e.preventDefault();
+            email: this.state.email,
+            password: this.state.password,
+            role: this.state.role
 
-        }
+        })
+            .then(response => {
+                const data = response.data;
+                this.setState({ data: data });
+                console.log(this.state.data)
+                // localStorage.setItem('token', response.data.token)
+                localStorage.setItem('data', JSON.stringify(response.data))
+                this.props.apitoken(this.state.data);
+            });
+        e.preventDefault();
 
-        OnChangeHandler(e){
-            const target = e.target;
-            const value = target.value;
-            const name = target.name;
-            this.setState({[name]:value})
-            // console.log(this.state)
-        }
+    }
 
-    
-    render(){
+    OnChangeHandler(e) {
+        const target = e.target;
+        const value = target.value;
+        const name = target.name;
+        console.log(name, value);
+        this.setState({ [name]: value })
+        // console.log(this.state)
+    }
 
-        return(
-           <React.Fragment>
+    OnRoleChangeHandler(e) {
+        console.log(e.target.id);
+        // console.log(this.state)
+    }
 
-            {/* <button onClick = {this.props.switch} className="btn btn-primary"/> */}
-            <Button onClick = {this.props.switch} className="fixed-top fixed-top btn-mdb-color">Login</Button>{' '}
-            <FontAwesomeIcon icon={faMusic} size='9x'/>
+    render() {
 
-            <h1 className='text-center display-2'>OneSet</h1>
-            <h1 className='text-center'>Register</h1>
+        return (
+            <React.Fragment>
 
-            <form onSubmit={this.SubmitHandler}>
-                <div className="form-group">
+                {/* <button onClick = {this.props.switch} className="btn btn-primary"/> */}
+                <FontAwesomeIcon icon={faMusic} size='5x' />
+                <h1 className='text-center display-5'>OneSet</h1>
+
+
+
+
+                <form onSubmit={this.SubmitHandler}>
+
+                    <h3 className='text-center'>I am..</h3>
+                    <div className="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label className="btn btn-primary">
+                            <button onClick={this.OnRoleChangeHandler} id="musician" value="musician"> a Musician.</button>
+                        </label>
+                        <label className="btn btn-primary">
+                            <button onClick={this.OnRoleChangeHandler} id="venue" value="venue"> looking for one.</button>
+                        </label>
+                    </div>
+
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary active">
+                            <input type="radio" name="options" id="option1" autocomplete="off" checked /> Active
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="options" id="option2" autocomplete="off" /> Radio
+                        </label>
+                    </div>
+
+
+                    <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Name</label>
-                        <input type="text" className="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter Name" name="name" onChange={this.OnChangeHandler}/>
+                        <input type="text" className="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter Name" name="name" onChange={this.OnChangeHandler} />
                         <small id="emailHelp" className="form-text text-muted">Real names please.</small>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
-                    <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" onChange={this.OnChangeHandler}/>
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Password</label>
-                    <input type="password" className="form-control" id="password" placeholder="Password" name="password" onChange={this.OnChangeHandler}></input>
-                    <small id="emailHelp" className="form-text text-muted">Make it a good one.</small>
-                </div>
-                <button type="submit" className="btn btn-primary">Register</button>
-            </form>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Email address</label>
+                        <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" onChange={this.OnChangeHandler} />
+                        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputPassword1">Password</label>
+                        <input type="password" className="form-control" id="password" placeholder="Password" name="password" onChange={this.OnChangeHandler}></input>
+                        <small id="emailHelp" className="form-text text-muted">Make it a good one.</small>
+                    </div>
+                    <button type="submit" className="btn btn-primary">Register</button>
+                </form>
 
-     
+                <h3 className='text-center'>Have an account?</h3>
 
-           </React.Fragment>
+                <Button onClick={this.props.switch} className="btn-mdb-color">Login</Button>{' '}
+
+
+
+
+            </React.Fragment>
 
 
         );

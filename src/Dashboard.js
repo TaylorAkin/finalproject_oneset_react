@@ -1,5 +1,4 @@
 import React from 'react';
-import LogoutComponent from './Logout';
 import HeaderComponent from './Header';
 import FooterComponent from './Footer';
 import Profile from './Profile';
