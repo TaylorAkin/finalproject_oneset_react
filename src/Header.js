@@ -18,7 +18,7 @@ class HeaderComponent extends React.Component {
 
     
     render() {
-        console.log(this.props.apitoken);
+        // console.log(this.props.apitoken);
 
         return (
 
