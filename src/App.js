@@ -67,7 +67,7 @@ class App extends React.Component {
 
     } else{
 
-      // console.log(this.state.data.user);
+      console.log(this.state.data.token);
       return(
         
         <DashboardComponent

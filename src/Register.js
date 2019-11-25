@@ -15,7 +15,7 @@ class RegisterComponent extends React.Component {
             name: '',
             email: '',
             password: '',
-            role: true,
+            role: 'musician',
         }
         this.SubmitHandler = this.SubmitHandler.bind(this);
         this.OnChangeHandler = this.OnChangeHandler.bind(this);
@@ -49,14 +49,20 @@ class RegisterComponent extends React.Component {
         const target = e.target;
         const value = target.value;
         const name = target.name;
-        console.log(name, value);
+        // console.log(name, value);
         this.setState({ [name]: value })
         // console.log(this.state)
     }
 
     OnRoleChangeHandler(e) {
-        console.log(e.target.id);
-        // console.log(this.state)
+ //set state of role based on which button is clicked.
+        if(e.target.id === 'musician'){
+            this.setState({role : 'musician'})
+            console.log(this.state.role);
+        } else if(e.target.id === 'venue'){
+            this.setState({role : 'venue'})
+            console.log(this.state.role);
+        }
     }
 
     render() {
@@ -83,14 +89,14 @@ class RegisterComponent extends React.Component {
                         </label>
                     </div>
 
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-secondary active">
-                            <input type="radio" name="options" id="option1" autocomplete="off" checked /> Active
-                        </label>
-                        <label class="btn btn-secondary">
-                            <input type="radio" name="options" id="option2" autocomplete="off" /> Radio
-                        </label>
-                    </div>
+                     {/* <div className="btn-group btn-group-toggle" data-toggle="buttons">
+                         <label className="btn btn-secondary active">
+                             <input type="radio" name="options" id="option1" autoComplete="off" /> Active
+                         </label>
+                         <label className="btn btn-secondary">
+                             <input type="radio" name="options" id="option2" autoComplete="off" /> Radio
+                         </label>
+                     </div> */}
 
 
                     <div className="form-group">
