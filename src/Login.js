@@ -24,9 +24,9 @@ class LoginComponent extends React.Component {
           .then(response => { const data = response.data; 
             this.setState({ data : data});
 
-            console.log(this.state.data)
+            // console.log(this.state.data)
             this.props.token(this.state.data);
-            console.log(response.data);
+            // console.log(response.data);
             localStorage.setItem('data', JSON.stringify(response.data))
           });
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import { MDBInput } from "mdbreact";
 import axios from 'axios';
-// import { MDBChipsInput } from 'mdbreact';
+import { Badge } from 'reactstrap';
+
 
 
 class ProfileComponent extends React.Component {
@@ -9,15 +10,22 @@ class ProfileComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            bio: ""
-
+            bio: "",
+            tagarray: [],
+            selectedtags: [],
 
         }
         this.changeValue = this.changeValue.bind(this);
         this.getBio = this.getBio.bind(this);
         this.updateBio = this.updateBio.bind(this);
+        this.getTags = this.getTags.bind(this);
+        this.myTags = this.myTags.bind(this);
     }
 
+    componentDidMount() {
+        this.getBio()
+        this.getTags();
+    }
 
     changeValue(e) {
         const target = e.target;
@@ -41,16 +49,13 @@ class ProfileComponent extends React.Component {
     }
 
 
-    componentDidMount() {
-        this.getBio()
-    }
 
-    
+
     updateBio(e) {
         console.log('ta');
-        var data = {bio : this.state.bio};
-       axios.post('http://127.0.0.1:8000/api/profile/' + this.props.user.id, data, {
-            method:"POST",
+        var data = { bio: this.state.bio };
+        axios.post('http://127.0.0.1:8000/api/profile/' + this.props.user.id, data, {
+            method: "POST",
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -59,16 +64,53 @@ class ProfileComponent extends React.Component {
         })
             .then(res => {
                 console.log(JSON.parse(res.config.data));
-           
-                    this.setState({ bio: JSON.parse(res.config.data).bio});
 
-                    //FIX LOCAL STORAGE SO IT UPDATES ON REFRESH
-                    // localStorage.setItem('data' , data)
+                this.setState({ bio: JSON.parse(res.config.data).bio });
+
+
+                //FIX LOCAL STORAGE SO IT UPDATES ON REFRESH
+                // localStorage.setItem('data' , data)
             });
 
         e.preventDefault();
+    }
+
+    getTags(e){
+         // post request for laravel api call
+        // console.log('Bearer ' + this.props.apitoken);
+        axios({
+            method: 'get',
+            url: 'http://127.0.0.1:8000/api/tags',
+            headers: {
+                Authorization: 'Bearer ' + this.props.apitoken,
+            },
+        })
+            .then(res => {
+                // prepare new menu item array
+                
+                this.setState({tagarray: res.data.data})
+                
+                console.log(this.state.tagarray);
+                
+
+            });
+
+            // e.preventDefault();
+
 
     }
+
+    myTags(e){
+       var newselctedtags = this.state.selectedtags.slice();
+       newselctedtags.push(e.target.name);
+       this.setState({selctedtags: newselctedtags});
+       console.log(this.state.selectedtags);
+
+
+    }
+
+
+
 
     render() {
         return (
@@ -91,24 +133,34 @@ class ProfileComponent extends React.Component {
                 </div>
 
                 <div className='container'>
-                    <div className='row'>
+                    <div className='row justify-content-center'>
                         <h1 className='text-center mx-auto'>
                             {this.props.user.name}
                         </h1>
                     </div>
                 </div>
+                
+            
                 <MDBInput name="bio" onChange={this.changeValue} onBlur={this.updateBio} type="textarea" label="Bio" rows="2" icon="pencil-alt" value={this.state.bio} />
 
 
+                <select onChange={this.myTags} className="browser-default custom-select justify-content-center">
+                    <option selected>Choose a tag to be searched by</option>
+
+                {this.state.tagarray ? this.state.tagarray.map(
+                    (tag,index)=>{
+                        return(
+
+                            <option  value={tag.id} key={index} name={tag.name}>{tag.name}</option>
+
+                        )
+                    }
+                ) : ''}
+                  
+                </select>
 
 
-
-                {/* <div className = 'container'>
-                    <div className="form-group shadow-textarea">
-                        <label htmlFor="exampleFormControlTextarea6" className = 'text-center mx-auto'></label>
-                        <textarea className="form-control z-depth-1" id="exampleFormControlTextarea6" rows="4" placeholder="Add your bio here..."></textarea>
-                    </div>
-                </div> */}
+                <Badge color="primary" pill>Piano</Badge>
 
 
             </React.Fragment>

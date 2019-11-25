@@ -44,13 +44,13 @@ class LogoutComponent extends React.Component {
 
     
     render(){
-
+            // console.log(this.props.apitoken)
         return(
            <React.Fragment>
 
             <form onSubmit={this.SubmitHandler}>
             
-                <Button type="submit" color="primary">Logout</Button>{' '}
+                <Button type="submit" color="dark">Logout</Button>{' '}
 
             </form>
 
