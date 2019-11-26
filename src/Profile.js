@@ -28,7 +28,7 @@ class ProfileComponent extends React.Component {
         this.getBio()
         this.getTags();
         this.setState({selectedtags:this.props.user.musicianTags});
-        // console.log(localStorage.getItem('bio'));
+        console.log(this.props.user.bio);
         this.setState({bio: localStorage.getItem('bio')});
 
     }

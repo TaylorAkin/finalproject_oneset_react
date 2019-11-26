@@ -59,10 +59,10 @@ class RegisterComponent extends React.Component {
 //  console.log(e.target.name);
         if(e.target.name === 'musician'){
            await this.setState({role : 'musician'})
-            // console.log(this.state.role);
+            console.log(this.state.role);
         } else if(e.target.name === 'venue'){
            await this.setState({role : 'venue'})
-            // console.log(this.state.role);
+            console.log(this.state.role);
         }
     }
 
