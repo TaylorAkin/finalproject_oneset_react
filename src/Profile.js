@@ -28,6 +28,9 @@ class ProfileComponent extends React.Component {
         this.getBio()
         this.getTags();
         this.setState({selectedtags:this.props.user.musicianTags});
+        console.log(this.props.user.bio);
+        this.setState({bio: localStorage.getItem('bio')});
+
     }
 
     changeValue(e) {
@@ -68,6 +71,9 @@ class ProfileComponent extends React.Component {
             .then(res => {
                 console.log(JSON.parse(res.config.data));
 
+                localStorage.setItem('bio', JSON.parse(res.config.data).bio)
+
+
                 this.setState({ bio: JSON.parse(res.config.data).bio });
 
 
@@ -94,6 +100,8 @@ class ProfileComponent extends React.Component {
 
             });
             //console.log(this.props.user.musicianTags);
+
+            if(this.props.user.musicianTags){
             if(this.props.user.musicianTags.length > 0){
                 var tmpTags = [];
                 for (var i = 0; i < this.props.user.musicianTags.length; i++){
@@ -102,6 +110,10 @@ class ProfileComponent extends React.Component {
                 }
                 this.setState({ selectedtags: tmpTags })
             }
+            else{
+                console.log('no tags');
+            }
+        }
         // e.preventDefault();
 
     }
@@ -139,11 +151,13 @@ class ProfileComponent extends React.Component {
     async myTags(e) {
     
         var tmpTags = [];
+       if(this.state.selectedtags){
         for(var i = 0; i < this.state.selectedtags.length; i++){
 
             tmpTags.push(this.state.selectedtags[i].tag_id);
 
         }
+    }
 
         tmpTags.push(Number(e.target.value));
         
@@ -190,6 +204,7 @@ class ProfileComponent extends React.Component {
 
 
 
+
     render() {
         return (
 
@@ -223,7 +238,7 @@ class ProfileComponent extends React.Component {
 
 
                 <select onChange={this.myTags} className="browser-default custom-select justify-content-center">
-                    <option selected>Choose a tag to be searched by</option>
+                    <option defaultValue>Choose a tag to be searched by</option>
 
                     {this.state.tagarray ? this.state.tagarray.map(
                         (tag, index) => {
@@ -237,24 +252,6 @@ class ProfileComponent extends React.Component {
 
                 </select>
                 
-                
-                 {/* {this.state.selectedtags ? this.state.selectedtags.map(
-                        (item, index) => {
-                            console.log(this.state.selectedtags);
-                            //on each item, filter through the tag array and return the id matched with 
-                            //the item
-                            var tag = this.state.tagarray.filter(obj => {                              
-                                return obj.id === Number(item);
-                            });
-                            // console.log(tag[0].id);
-  
-                            return (
-                                
-                                <Badge value={item} key={index} name={item} color="primary" pill>{tag}</Badge>
-
-                            )
-                        }
-                    ) : ''} */}
                     
 
                 {this.state.selectedtags ? this.state.selectedtags.map(

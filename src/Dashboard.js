@@ -2,39 +2,50 @@ import React from 'react';
 import HeaderComponent from './Header';
 import FooterComponent from './Footer';
 import Profile from './Profile';
+import SearchUser from './SearchUser';
 
 
 
-class DashboardComponent extends React.Component{
+class DashboardComponent extends React.Component {
 
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-
+            page: 4
         }
-    
+
+        this.setPageState = this.setPageState.bind(this);
     }
 
-render(){
 
-    return(
-
-    <React.Fragment>
-
-        <HeaderComponent apitoken = {this.props.apitoken} user = {this.props.user}/>
-
-        <Profile apitoken = {this.props.apitoken} user = {this.props.user}/>
-       
-        <FooterComponent apitoken = {this.props.apitoken} user = {this.props.user}/>
-
+    setPageState(page) {
+        this.setState({ page: page })
         
+    }
 
-    </React.Fragment>
+    render() {
 
-    )
+        return (
 
-}
+            <React.Fragment>
+
+                <HeaderComponent apitoken={this.props.apitoken} user={this.props.user} />
+
+                {this.state.page === 1 ? <Profile apitoken={this.props.apitoken} user={this.props.user} /> : null}
+                {this.state.page === 2 ? <SearchUser apitoken={this.props.apitoken} user={this.props.user} /> : null}
+                {this.state.page === 3 ? <Profile apitoken={this.props.apitoken} user={this.props.user} /> : null}
+                {this.state.page === 4 ? <Profile apitoken={this.props.apitoken} user={this.props.user} /> : null}
+
+                <FooterComponent apitoken={this.props.apitoken} user={this.props.user} changepage={this.setPageState} />
+
+
+
+            </React.Fragment>
+
+        )
+
+    }
 
 }
 
