@@ -2,6 +2,7 @@ import React from 'react';
 import { MDBInput } from "mdbreact";
 import axios from 'axios';
 import { Badge } from 'reactstrap';
+// import { counter } from '@fortawesome/fontawesome-svg-core';
 
 
 
@@ -26,7 +27,7 @@ class ProfileComponent extends React.Component {
     componentDidMount() {
         this.getBio()
         this.getTags();
-    
+        this.setState({selectedtags:this.props.user.musicianTags});
     }
 
     changeValue(e) {
@@ -89,19 +90,18 @@ class ProfileComponent extends React.Component {
         })
             .then(res => {
                 // prepare new menu item array
-
                 this.setState({ tagarray: res.data.data })
 
-            
-
-                console.log(this.state.tagarray);
-
-
             });
-            // if(localStorage.getItem('mytags')){
-            //     this.setState({selectedtags: JSON.parse(localStorage.getItem('mytags'))})
-            // }
-
+            //console.log(this.props.user.musicianTags);
+            if(this.props.user.musicianTags.length > 0){
+                var tmpTags = [];
+                for (var i = 0; i < this.props.user.musicianTags.length; i++){
+                    tmpTags.push(this.props.user.musicianTags[i]);
+                    //console.log(this.props.user.musicianTags[i]);
+                }
+                this.setState({ selectedtags: tmpTags })
+            }
         // e.preventDefault();
 
     }
@@ -138,17 +138,20 @@ class ProfileComponent extends React.Component {
 
     async myTags(e) {
     
-        // console.log(e.target.value);
-        await this.setState({ selectedtags: [...this.state.selectedtags, e.target.value] });
+        var tmpTags = [];
+        for(var i = 0; i < this.state.selectedtags.length; i++){
 
-        localStorage.setItem('mytags', JSON.stringify(this.state.selectedtags));
+            tmpTags.push(this.state.selectedtags[i].tag_id);
 
-        console.log(this.state.selectedtags);
+        }
+
+        tmpTags.push(Number(e.target.value));
         
         var data = { 
-            tags: this.state.selectedtags,
-            musician_id: this.props.user.id
+            'tags': tmpTags,
+            'musician_id': this.props.user.id
         };
+        console.log(data);
         axios.post('http://127.0.0.1:8000/api/mytags', data, {
             method: "POST",
             headers: {
@@ -158,7 +161,23 @@ class ProfileComponent extends React.Component {
             },
         })
         .then(res => {
-            console.log(JSON.parse(res.config.data));
+            console.log(res.data);
+            var newTags = res.data;
+            // replace
+            this.props.user.musicianTags = newTags;
+            // Do the same thing for bio, check when complete
+            localStorage.setItem('data' , JSON.stringify({'token':this.props.apitoken, 'user': this.props.user}));
+
+            
+            var selectedtags = [];
+            for(var i = 0; i < newTags.length; i++){
+
+                selectedtags.push({'tag_id':newTags[i].tag_id});
+    
+            }
+            console.log(selectedtags);
+            this.setState({selectedtags: selectedtags});
+            //this.props.user.musicianTags = newTags;
             //this.setState({selectedtags: JSON.parse(res.config.data)})
             // this.setState({ bio: JSON.parse(res.config.data).bio });
 
@@ -217,23 +236,45 @@ class ProfileComponent extends React.Component {
                     ) : ''}
 
                 </select>
-
-                 {this.state.selectedtags ? this.state.selectedtags.map(
+                
+                
+                 {/* {this.state.selectedtags ? this.state.selectedtags.map(
                         (item, index) => {
-                            console.log(item);
+                            console.log(this.state.selectedtags);
+                            //on each item, filter through the tag array and return the id matched with 
+                            //the item
                             var tag = this.state.tagarray.filter(obj => {                              
                                 return obj.id === Number(item);
                             });
-                            console.log(tag[0].id);
+                            // console.log(tag[0].id);
   
                             return (
                                 
-                                <Badge value={item} key={index} name={item} color="primary" pill>{tag[0].name}</Badge>
+                                <Badge value={item} key={index} name={item} color="primary" pill>{tag}</Badge>
 
                             )
                         }
-                    ) : ''}
+                    ) : ''} */}
+                    
 
+                {this.state.selectedtags ? this.state.selectedtags.map(
+                    (item, index) => {
+                        //console.log(item);
+                        var tag = this.state.tagarray.filter(obj => {   
+                                                      
+                            return obj.id === Number(item.tag_id);
+                        });
+                        //console.log(tag); 
+
+                        
+                        return (
+                            
+                            tag.length>0 ?  <Badge value={tag[0].id} key={index} name={tag[0].name} color="primary" pill>{tag[0].name}</Badge> : ''
+                           
+                        )
+                    }
+                ) : '' }
+                
             </React.Fragment>
 
 
