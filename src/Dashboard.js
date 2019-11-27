@@ -2,7 +2,8 @@ import React from 'react';
 import HeaderComponent from './Header';
 import FooterComponent from './Footer';
 import Profile from './Profile';
-import SearchUser from './SearchUser';
+import SearchVenues from './SearchVenues';
+
 
 
 
@@ -21,7 +22,7 @@ class DashboardComponent extends React.Component {
 
     setPageState(page) {
         this.setState({ page: page })
-        
+
     }
 
     render() {
@@ -33,7 +34,7 @@ class DashboardComponent extends React.Component {
                 <HeaderComponent apitoken={this.props.apitoken} user={this.props.user} />
 
                 {this.state.page === 1 ? <Profile apitoken={this.props.apitoken} user={this.props.user} /> : null}
-                {this.state.page === 2 ? <SearchUser apitoken={this.props.apitoken} user={this.props.user} /> : null}
+                {this.state.page === 2 ? <SearchVenues apitoken={this.props.apitoken} user={this.props.user} /> : null}
                 {this.state.page === 3 ? <Profile apitoken={this.props.apitoken} user={this.props.user} /> : null}
                 {this.state.page === 4 ? <Profile apitoken={this.props.apitoken} user={this.props.user} /> : null}
 
