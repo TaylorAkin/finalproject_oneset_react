@@ -95,7 +95,7 @@ class ProfileComponent extends React.Component {
             },
         })
             .then(res => {
-                // prepare new menu item array
+             
                 this.setState({ tagarray: res.data.data })
 
             });
@@ -210,7 +210,7 @@ class ProfileComponent extends React.Component {
 
             <React.Fragment>
 
-                <div className='container py-4 text-center'>
+                <div className='container py-4 text-center mt-5'>
                     'Background photo'
                 <div className='row'>
                         <div className='col-4'>

@@ -19,11 +19,15 @@ class DashboardComponent extends React.Component {
         this.setPageState = this.setPageState.bind(this);
     }
 
+    componentDidMount(){
+        console.log(this.props.apitoken);
+    }
 
     setPageState(page) {
         this.setState({ page: page })
 
     }
+
 
     render() {
 

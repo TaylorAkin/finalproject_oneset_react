@@ -23,7 +23,7 @@ class HeaderComponent extends React.Component {
         return (
 
             <React.Fragment>
-                <div className="container bg-dark ">
+                <div className="container bg-dark fixed-top">
                     <div className="row">
                         <div className="col-4">
 
@@ -34,7 +34,7 @@ class HeaderComponent extends React.Component {
                         <div className="col-4">
                         <nav className="navbar navbar-expand-lg">
                              
-                                <LogoutComponent  apitoken = {this.props.apitoken}/>
+                                <LogoutComponent apitoken={this.props.apitoken}/>
                             
                             </nav>
                         </div>

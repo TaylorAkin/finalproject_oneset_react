@@ -16,6 +16,10 @@ class LogoutComponent extends React.Component {
         // this.SubmitHandler=this.SubmitHandler.bind(this);
     }
 
+     componentDidMount(){
+        console.log(this.props.apitoken);
+    }
+
         SubmitHandler(e) {
         // post request for laravel api call
         // console.log('Bearer ' + this.props.apitoken);

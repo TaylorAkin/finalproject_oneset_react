@@ -37,21 +37,24 @@ class SearchVenues extends React.Component{
         
         <React.Fragment>
              {/*Card Deck*/}
-            {/* <div className="card-deck"> */}
+            <div className="container" style={{marginTop: "5rem", marginBottom: "5rem"}}>
                 {this.state.venues ? this.state.venues.map(
                     (item,index) => {
                         console.log(item.user.name);
                         return(
 
+                            // <div className="container" key={index}>
 
-                            <VenueCardFlip key={index} apitoken={this.props.apitoken} user={this.props.user} venueinfo={this.state.venues[index]} />
+                                <VenueCardFlip key={index} apitoken={this.props.apitoken} user={this.props.user} venueinfo={this.state.venues[index]}/>
+
+                            // </div>
 
                         )
                     }
         
                 ) : ''}
 
-            {/* </div> */}
+            </div>
         </React.Fragment>
 
         )

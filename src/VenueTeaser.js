@@ -29,9 +29,9 @@ class VenueTeaser extends React.Component {
         
             <React.Fragment>
                 {/*Card Deck*/}
-                <div className="card-deck">
+                <div className="card-deck pt-5">
                   {/*Card*/}
-                    <div className="card mb-4">
+                    <div className="card">
                     
                             {/*Card Image*/}
                         <div className="view overlay">
