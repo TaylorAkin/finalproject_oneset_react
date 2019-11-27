@@ -49,7 +49,7 @@ class VenueTeaser extends React.Component {
                         {/*Text */}
                         <p className="card-text">{this.props.venueinfo.user.email}</p>
                         {/* Provides extra visual weight and identifies the primary action in a set of buttons*/}
-                        <button onClick={this.changeParent} type="button" className="btn btn-light-blue btn-md">Read more</button>
+                        <button onClick={this.changeParent} type="button" className="btn btn-light-blue btn-md">View Profile</button>
                     
                         </div>
                             
