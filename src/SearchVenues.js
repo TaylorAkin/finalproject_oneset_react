@@ -37,7 +37,7 @@ class SearchVenues extends React.Component{
         
         <React.Fragment>
              {/*Card Deck*/}
-            <div className="container" style={{marginTop: "5rem", marginBottom: "5rem"}}>
+            <div className="container mt-5 pb-5" style={{marginTop: "5rem", marginBottom: "3rem" , backgroundColor: "black"}}>
                 {this.state.venues ? this.state.venues.map(
                     (item,index) => {
                         console.log(item.user.name);

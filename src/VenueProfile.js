@@ -70,7 +70,7 @@ class VenueProfile extends React.Component{
                     {/*Text */}
                     <p className="card-text">{this.state.venuebio}</p>
                     {/* Provides extra visual weight and identifies the primary action in a set of buttons*/}
-                    <button onClick={this.changeParent} type="button" className="btn btn-light-blue btn-md">View Preview</button>
+                    <button onClick={this.changeParent} type="button" className="btn btn-blue btn-md">View Preview</button>
                 
                     </div>
                         

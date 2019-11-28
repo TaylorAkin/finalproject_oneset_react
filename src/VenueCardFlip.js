@@ -25,7 +25,10 @@ class VenueCardFlip extends React.Component {
 
     render() {
       return (
-        <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="slower" style={{marginTop: "500px"}}>
+        
+        <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal" style={{marginTop: "500px"}}
+         flipSpeedBackToFront={2} flipSpeedFrontToBack={2}>
+
           <VenueTeaser parentflip={this.handleClick} apitoken={this.props.apitoken} user={this.props.user} venueinfo={this.props.venueinfo}>
             This is the front of the card.
             {/* <button onClick={this.handleClick}>Click to flip</button> */}

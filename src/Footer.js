@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button } from 'reactstrap';
+// import { Button } from 'reactstrap';
+import LogoutComponent from './Logout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faWifi, faHome, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faWifi, faCog, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 
 class FooterComponent extends React.Component {
@@ -29,27 +30,37 @@ class FooterComponent extends React.Component {
         return (
 
             <React.Fragment>
-                <div className="container bg-dark fixed-bottom">
+                <div className="container bg-dark fixed-bottom pb-2">
                     <div className="row">
-                        <div className="col-3 px-0">
-                            <Button onClick={this.clickHandler} id='1' value='1' className='btn-mdb-color'>
-                                <FontAwesomeIcon icon={faHome} size='2x' />
-                            </Button>
+                        <div className="col-3 mt-2">
+                            {/* <button onClick={this.clickHandler} id='1' value='1'>
+                                <FontAwesomeIcon icon={faHome} size='3x' />
+                            </button> */}
+
+                            <div className="dropup">
+                                <button className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <FontAwesomeIcon icon={faCog} size='3x' />
+                                </button>
+                                <div className="dropdown-menu">
+                                   <LogoutComponent apitoken={this.props.apitoken} />
+                                </div>
+                            </div>
+
                         </div>
-                        <div className="col-3 px-0">
-                            <Button onClick={this.clickHandler} id='2' value='2' className='btn-mdb-color'>
-                                <FontAwesomeIcon icon={faSearch} size='2x' />
-                            </Button>
+                        <div className="col-3 mt-2">
+                            <button onClick={this.clickHandler} id='2' value='2'>
+                                <FontAwesomeIcon icon={faSearch} size='3x' />
+                            </button>
                         </div>
-                        <div className="col-3 px-0">
-                            <Button onClick={this.clickHandler} id='3' value='3' className='btn-mdb-color'>
-                                <FontAwesomeIcon icon={faWifi}  size='2x' />
-                            </Button>
+                        <div className="col-3 mt-2">
+                            <button onClick={this.clickHandler} id='3' value='3'>
+                                <FontAwesomeIcon icon={faWifi} size='3x' />
+                            </button>
                         </div>
-                        <div className="col-3 px-0">
-                            <Button onClick={this.clickHandler} id='4' value='4' className='btn-mdb-color'>
-                                <FontAwesomeIcon icon={faUserCircle} size='2x' />
-                            </Button>
+                        <div className="col-3 mt-2">
+                            <button onClick={this.clickHandler} id='4' value='4'>
+                                <FontAwesomeIcon icon={faUserCircle} size='3x' />
+                            </button>
                         </div>
 
                     </div>

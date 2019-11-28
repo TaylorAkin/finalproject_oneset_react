@@ -3,10 +3,6 @@ import LoginComponent from './Login';
 import DashboardComponent from './Dashboard';
 import './App.css';
 import RegisterComponent from './Register';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
-
-
 
 
 class App extends React.Component {

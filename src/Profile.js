@@ -209,14 +209,14 @@ class ProfileComponent extends React.Component {
         return (
 
             <React.Fragment>
-
-                <div className='container py-4 text-center mt-5'>
+            <div className="container pt-5" style={{paddingBottom: "20rem", backgroundColor: "black"}}>
+                <div className='container py-4 text-center mt-4 text-white'>
                     'Background photo'
                 <div className='row'>
                         <div className='col-4'>
 
                         </div>
-                        <div className='col-4 border rounded-circle'>
+                        <div className='col-4 border rounded-circle text-white'>
                             "profile image"
                     </div>
                         <div className='col-4'>
@@ -225,16 +225,16 @@ class ProfileComponent extends React.Component {
                     </div>
                 </div>
 
-                <div className='container'>
+                <div className='container' style={{backgroundColor: "black"}}>
                     <div className='row justify-content-center'>
-                        <h1 className='text-center mx-auto'>
+                        <h1 className='text-center mx-auto text-white'>
                             {this.props.user.name}
                         </h1>
                     </div>
                 </div>
 
 
-                <MDBInput name="bio" onChange={this.changeValue} onBlur={this.updateBio} type="textarea" label="Bio" rows="2" icon="pencil-alt" value={this.state.bio} />
+                <MDBInput className='text-white' name="bio" onChange={this.changeValue} onBlur={this.updateBio} type="textarea" label="Bio" rows="2" icon="pencil-alt" value={this.state.bio} />
 
 
                 <select onChange={this.myTags} className="browser-default custom-select justify-content-center">
@@ -271,7 +271,9 @@ class ProfileComponent extends React.Component {
                         )
                     }
                 ) : '' }
-                
+
+
+            </div>
             </React.Fragment>
 
 
