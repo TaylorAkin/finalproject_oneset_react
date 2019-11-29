@@ -1,7 +1,9 @@
 import React from 'react';
+import TagsComponent from './Tags';
+import CalendarComponent from './Calendar'
 import { MDBInput } from "mdbreact";
 import axios from 'axios';
-import { Badge } from 'reactstrap';
+// import { Badge } from 'reactstrap';
 // import { counter } from '@fortawesome/fontawesome-svg-core';
 
 
@@ -21,15 +23,18 @@ class ProfileComponent extends React.Component {
         this.updateBio = this.updateBio.bind(this);
         this.getTags = this.getTags.bind(this);
         this.myTags = this.myTags.bind(this);
-        this.postTags = this.postTags.bind(this);
+        // this.postTags = this.postTags.bind(this);
     }
 
     componentDidMount() {
         this.getBio()
         this.getTags();
         this.setState({selectedtags:this.props.user.musicianTags});
-        console.log(this.props.user.bio);
-        this.setState({bio: localStorage.getItem('bio')});
+        console.log(this.props.user);
+        console.log(this.props.user.role);
+        // this.setState({bio: localStorage.getItem('bio')});
+        
+        // this.setState({bio: this.props.user.profile[0].bio});
 
     }
 
@@ -69,16 +74,10 @@ class ProfileComponent extends React.Component {
             },
         })
             .then(res => {
-                console.log(JSON.parse(res.config.data));
-
+                // console.log(JSON.parse(res.config.data));
                 localStorage.setItem('bio', JSON.parse(res.config.data).bio)
-
-
                 this.setState({ bio: JSON.parse(res.config.data).bio });
 
-
-                //FIX LOCAL STORAGE SO IT UPDATES ON REFRESH
-                // localStorage.setItem('data' , data)
             });
 
         e.preventDefault();
@@ -118,35 +117,30 @@ class ProfileComponent extends React.Component {
 
     }
 
-    postTags(e){
+    // postTags(e){
 
-        console.log(this.state.selectedtags);
-        var data = { 
-            tags: this.state.selectedtags,
-            user_id: this.props.user.id
-        };
-        axios.post('http://127.0.0.1:8000/api/mytags/', data, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': 'Bearer ' + this.props.apitoken,
-            },
-        })
-            .then(res => {
-                console.log(JSON.parse(res.config.data));
+    //     console.log(this.state.selectedtags);
+    //     var data = { 
+    //         tags: this.state.selectedtags,
+    //         user_id: this.props.user.id
+    //     };
+    //     axios.post('http://127.0.0.1:8000/api/mytags/', data, {
+    //         method: "POST",
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json',
+    //             'Authorization': 'Bearer ' + this.props.apitoken,
+    //         },
+    //     })
+    //         .then(res => {
+    //             console.log(JSON.parse(res.config.data));
 
-                // this.setState({ bio: JSON.parse(res.config.data).bio });
+    //         });
 
-
-                //FIX LOCAL STORAGE SO IT UPDATES ON REFRESH
-                // localStorage.setItem('data' , data)
-            });
-
-        e.preventDefault();
+    //     e.preventDefault();
 
 
-    }
+    // }
 
     async myTags(e) {
     
@@ -209,7 +203,7 @@ class ProfileComponent extends React.Component {
         return (
 
             <React.Fragment>
-            <div className="container pt-5" style={{paddingBottom: "20rem", backgroundColor: "black"}}>
+            <div className="container pt-5" style={{paddingBottom: "23rem", backgroundColor: "black"}}>
                 <div className='container py-4 text-center mt-4 text-white'>
                     'Background photo'
                 <div className='row'>
@@ -233,57 +227,19 @@ class ProfileComponent extends React.Component {
                     </div>
                 </div>
 
-
+               
                 <MDBInput className='text-white' name="bio" onChange={this.changeValue} onBlur={this.updateBio} type="textarea" label="Bio" rows="2" icon="pencil-alt" value={this.state.bio} />
 
-
-                <select onChange={this.myTags} className="browser-default custom-select justify-content-center">
-                    <option defaultValue>Choose a tag to be searched by</option>
-
-                    {this.state.tagarray ? this.state.tagarray.map(
-                        (tag, index) => {
-                            return (
-
-                                <option value={tag.id} key={index} name={tag.name}>{tag.name}</option>
-
-                            )
-                        }
-                    ) : ''}
-
-                </select>
-                
-                    
-
-                {this.state.selectedtags ? this.state.selectedtags.map(
-                    (item, index) => {
-                        //console.log(item);
-                        var tag = this.state.tagarray.filter(obj => {   
-                                                      
-                            return obj.id === Number(item.tag_id);
-                        });
-                        //console.log(tag); 
-
-                        
-                        return (
-                            
-                            tag.length>0 ?  <Badge value={tag[0].id} key={index} name={tag[0].name} color="primary" pill>{tag[0].name}</Badge> : ''
-                           
-                        )
-                    }
-                ) : '' }
+                {this.props.user.role === 'musician' ? 
+                 <TagsComponent mytags={this.myTags} tagarray={this.state.tagarray} selectedtags={this.state.selectedtags}/>
+                 :
+                 <CalendarComponent />
+                }
 
 
             </div>
             </React.Fragment>
 
-
-
-
-
-        )
-    }
-
-
-}
+        )}}
 
 export default ProfileComponent;

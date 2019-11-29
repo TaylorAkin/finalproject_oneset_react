@@ -20,7 +20,7 @@ class DashboardComponent extends React.Component {
     }
 
     componentDidMount(){
-        console.log(this.props.apitoken);
+        // console.log(this.props.apitoken);
     }
 
     setPageState(page) {

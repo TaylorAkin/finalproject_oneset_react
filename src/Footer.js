@@ -31,7 +31,7 @@ class FooterComponent extends React.Component {
 
             <React.Fragment>
                 <div className="container bg-dark fixed-bottom pb-2">
-                    <div className="row">
+                    <div className="row pb-1">
                         <div className="col-3 mt-2">
                             {/* <button onClick={this.clickHandler} id='1' value='1'>
                                 <FontAwesomeIcon icon={faHome} size='3x' />
@@ -42,7 +42,7 @@ class FooterComponent extends React.Component {
                                       <FontAwesomeIcon icon={faCog} size='3x' />
                                 </button>
                                 <div className="dropdown-menu">
-                                   <LogoutComponent apitoken={this.props.apitoken} />
+                                  <LogoutComponent apitoken={this.props.apitoken}/>
                                 </div>
                             </div>
 

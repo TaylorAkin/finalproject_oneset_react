@@ -37,7 +37,7 @@ class RegisterComponent extends React.Component {
             .then(response => {
                 const data = response.data;
                 this.setState({ data: data });
-                // console.log(this.state.data)
+                console.log(this.state.data)
                 // localStorage.setItem('token', response.data.token)
                 localStorage.setItem('data', JSON.stringify(response.data))
                 this.props.apitoken(this.state.data);

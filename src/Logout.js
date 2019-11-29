@@ -19,7 +19,7 @@ class LogoutComponent extends React.Component {
        
         //  var token = this.props.apitoken;
          this.setState({token: this.props.apitoken})
-         console.log(this.state.token);
+        //  console.log(this.state.token);
         
     }
     

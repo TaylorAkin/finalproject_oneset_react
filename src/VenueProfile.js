@@ -66,11 +66,17 @@ class VenueProfile extends React.Component{
                     <div className="card-body">
                 
                     {/*Title */}
-                    <h4 className="card-title">{this.props.venueinfo.user.name}</h4>
-                    {/*Text */}
-                    <p className="card-text">{this.state.venuebio}</p>
+                    <h4 className="card-title text-center">{this.props.venueinfo.user.name}</h4>
+                    {/*Bio */}
+                    <p className="card-text text-center">{this.state.venuebio}</p>
+
+                    <h4 className="card-text">Contact Info</h4>
+
+                    <p className="card-text">{this.props.venueinfo.user.email}</p>
+
                     {/* Provides extra visual weight and identifies the primary action in a set of buttons*/}
-                    <button onClick={this.changeParent} type="button" className="btn btn-blue btn-md">View Preview</button>
+                    <button onClick={this.changeParent} type="button" className="btn btn-blue btn-md mx-auto" 
+                    style={{display: "block"}}>Turn Back</button>
                 
                     </div>
                         
