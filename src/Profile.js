@@ -3,6 +3,7 @@ import TagsComponent from './Tags';
 import CalendarComponent from './Calendar'
 import { MDBInput } from "mdbreact";
 import axios from 'axios';
+import ProfilePicture from './ProfilePicture';
 // import { Badge } from 'reactstrap';
 // import { counter } from '@fortawesome/fontawesome-svg-core';
 
@@ -16,11 +17,12 @@ class ProfileComponent extends React.Component {
             bio: "",
             tagarray: [],
             selectedtags: [],
+            picture_path: '',
 
         }
         this.changeValue = this.changeValue.bind(this);
         this.getBio = this.getBio.bind(this);
-        this.updateBio = this.updateBio.bind(this);
+        this.updateProfile = this.updateProfile.bind(this);
         this.getTags = this.getTags.bind(this);
         this.myTags = this.myTags.bind(this);
         // this.postTags = this.postTags.bind(this);
@@ -31,8 +33,8 @@ class ProfileComponent extends React.Component {
         this.getTags();
         this.setState({selectedtags:this.props.user.musicianTags});
         console.log(this.props.user);
-        console.log(this.props.user.role);
-        // this.setState({bio: localStorage.getItem('bio')});
+        // console.log(this.props.user.role);
+        this.setState({bio: localStorage.getItem('bio')});
         
         // this.setState({bio: this.props.user.profile[0].bio});
 
@@ -62,9 +64,14 @@ class ProfileComponent extends React.Component {
 
 
 
-    updateBio(e) {
+
+
+    updateProfile(e) {
         console.log('ta');
-        var data = { bio: this.state.bio };
+        this.setState({picture_path: this.props.updateprofilepic})
+        var data = { bio: this.state.bio,
+                    picture_path: this.state.picture_path,
+        };
         axios.post('http://127.0.0.1:8000/api/profile/' + this.props.user.id, data, {
             method: "POST",
             headers: {
@@ -94,11 +101,11 @@ class ProfileComponent extends React.Component {
             },
         })
             .then(res => {
-             
+             console.log(res.data);
                 this.setState({ tagarray: res.data.data })
 
             });
-            //console.log(this.props.user.musicianTags);
+            console.log(this.props.user.musicianTags);
 
             if(this.props.user.musicianTags){
             if(this.props.user.musicianTags.length > 0){
@@ -205,13 +212,14 @@ class ProfileComponent extends React.Component {
             <React.Fragment>
             <div className="container pt-5" style={{paddingBottom: "23rem", backgroundColor: "black"}}>
                 <div className='container py-4 text-center mt-4 text-white'>
-                    'Background photo'
+                    
                 <div className='row'>
                         <div className='col-4'>
 
                         </div>
                         <div className='col-4 border rounded-circle text-white'>
-                            "profile image"
+                           <ProfilePicture apitoken={this.props.apitoken} user={this.props.user} updateprofilepic={this.updateProfile}
+                           className='text-white' />
                     </div>
                         <div className='col-4'>
 
@@ -228,9 +236,9 @@ class ProfileComponent extends React.Component {
                 </div>
 
                
-                <MDBInput className='text-white' name="bio" onChange={this.changeValue} onBlur={this.updateBio} type="textarea" label="Bio" rows="2" icon="pencil-alt" value={this.state.bio} />
+                <MDBInput className='text-white' name="bio" onChange={this.changeValue} onBlur={this.updateProfile} type="textarea" label="Bio" rows="2" icon="pencil-alt" value={this.state.bio} />
 
-                {this.props.user.role === 'musician' ? 
+                {this.props.user.musician ? 
                  <TagsComponent mytags={this.myTags} tagarray={this.state.tagarray} selectedtags={this.state.selectedtags}/>
                  :
                  <CalendarComponent />
