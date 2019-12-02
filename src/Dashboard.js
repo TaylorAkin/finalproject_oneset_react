@@ -22,7 +22,7 @@ class DashboardComponent extends React.Component {
 
     componentDidMount() {
         // console.log(this.props.data);
-        console.log(this.props.user.musician);
+        // console.log(this.props.user.musician);
     }
 
     setPageState(page) {
@@ -40,7 +40,7 @@ class DashboardComponent extends React.Component {
                 <HeaderComponent apitoken={this.props.apitoken} user={this.props.user} />
 
                 {this.state.page === 1 ? <Profile apitoken={this.props.apitoken} user={this.props.user} /> : null}
-                {this.state.page === 2 ? (this.props.user.musician.length > 0 ?
+                {this.state.page === 2 ? ( this.props.user.role==='musician' || this.props.user.musician ?
                     <SearchVenues apitoken={this.props.apitoken} user={this.props.user} /> :
                     <SearchMusicians apitoken={this.props.apitoken} user={this.props.user} />)
                     : null

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button } from 'reactstrap';
-import axios from 'axios';
+// import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCamera, faUpload } from '@fortawesome/free-solid-svg-icons'
 
  
 class ProfilePicture extends React.Component {
@@ -12,19 +14,19 @@ class ProfilePicture extends React.Component {
         
         };
         //  this.onDrop = this.onDrop.bind(this);
-         this.fileSelectedHander =  this.fileSelectedHander.bind(this);
+         this.fileSelectedHandler =  this.fileSelectedHandler.bind(this);
          this.fileUploadHandler =  this.fileUploadHandler.bind(this);
     }
  
   
 
-    fileSelectedHander(e){
+    fileSelectedHandler(e){
         console.log(e.target.files[0]);
-        this.setState({picture_path: e.target.files[[0]]});
+        this.setState({picture_path: e.target.files[0]});
     }
 
     fileUploadHandler(e){
-        console.log('ta');
+        console.log(e);
        
        this.props.updateprofilepic(this.state.picture_path);
 
@@ -35,11 +37,21 @@ class ProfilePicture extends React.Component {
 
         <React.Fragment>
 
-            {/* <form action="upload.php" method="post" enctype="multipart/form-data">
-            Select image to upload: */}
-            <input type="file" onChange={this.fileSelectedHander} name="fileToUpload" id="fileToUpload" />
-           <Button onClick={this.fileUploadHandler} color='primary' >Upload</Button>
-            {/* </form>  */}
+            <input 
+            type="file" 
+            style={{display:'none'}} 
+            onChange={this.fileSelectedHandler} 
+            name="fileToUpload" 
+            id="fileToUpload"
+            ref={fileInput => this.fileInput = fileInput} />
+            <button onClick={() => this.fileInput.click()} style={{backgroundColor: 'white'}}>
+                    <FontAwesomeIcon icon={faCamera} size='2x' />
+            </button>
+
+            <button onClick={this.fileUploadHandler} style={{backgroundColor: 'white'}}>
+                    <FontAwesomeIcon icon={faUpload} size='2x' />
+            </button>
+          
 
         </React.Fragment>
         );
