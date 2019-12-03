@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class VenueTeaser extends React.Component {
+class MusicianTeaser extends React.Component {
 
 
     constructor(props){
@@ -13,7 +13,7 @@ class VenueTeaser extends React.Component {
 
     componentDidMount(){
        
-        console.log(this.props.venueinfo.user.name);
+        console.log(this.props.musicianinfo.user.name);
         // this.setState({venues: this.props.venueinfo})
        
     }
@@ -45,7 +45,7 @@ class VenueTeaser extends React.Component {
                         <div className="card-body">
                     
                         {/*Title */}
-                        <h4 className="card-title text-center">{this.props.venueinfo.user.name}</h4>
+                        <h4 className="card-title text-center">{this.props.musicianinfo.user.name}</h4>
                         {/*Text */}
                         
                         {/* Provides extra visual weight and identifies the primary action in a set of buttons*/}
@@ -62,4 +62,4 @@ class VenueTeaser extends React.Component {
 }
     
 
-export default VenueTeaser;
+export default MusicianTeaser;

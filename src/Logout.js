@@ -1,8 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { Button } from 'reactstrap';
-
-
 
 
 class LogoutComponent extends React.Component {
@@ -12,14 +9,26 @@ class LogoutComponent extends React.Component {
         this.state= {
             email: '' ,
             password: '',
+            token: '',
         }
         // this.SubmitHandler=this.SubmitHandler.bind(this);
+       
     }
 
+      componentDidMount(){
+       
+        //  var token = this.props.apitoken;
+         this.setState({token: this.props.apitoken})
+        //  console.log(this.state.token);
+        
+    }
+    
+
+
         SubmitHandler(e) {
-        // post request for laravel api call
-        // console.log('Bearer ' + this.props.apitoken);
-        localStorage.removeItem('data');
+       
+        // console.log(this.state.token);
+         localStorage.removeItem('data');
         axios({
             method: 'get',
             url: 'http://127.0.0.1:8000/api/logout',
@@ -50,7 +59,7 @@ class LogoutComponent extends React.Component {
 
             <form onSubmit={this.SubmitHandler}>
             
-                <Button type="submit" color="dark">Logout</Button>{' '}
+                <button type="submit" color="dark">Logout</button>
 
             </form>
 

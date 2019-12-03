@@ -1,33 +1,33 @@
 import React from 'react';
 import axios from 'axios';
-import VenueCardFlip from './VenueCardFlip';
+import MusicianCardFlip from './MusicianCardFlip';
 
-class SearchVenues extends React.Component{
+class SearchMusicians extends React.Component{
 
     constructor(props){
         super(props);
         this.state ={
-            venues: []
+            musicians: []
         }
     }
 
     componentDidMount(){
-        this.getVenues()
+        this.getMusicians()
     }
 
 
-    getVenues(){
+    getMusicians(){
         axios({
             method: 'get',
-            url: 'http://127.0.0.1:8000/api/venues',
+            url: 'http://127.0.0.1:8000/api/musicians',
             headers: {
                 Authorization: 'Bearer ' + this.props.apitoken,
             },
         })
         .then(res => {
-            // console.log(res.data.data);
-            this.setState({venues: res.data.data})
-              console.log(this.state.venues);                
+            console.log(res.data.data);
+            this.setState({musicians: res.data.data})
+              console.log(this.state.musicians);                
 
         })
     }
@@ -38,14 +38,14 @@ class SearchVenues extends React.Component{
         <React.Fragment>
              {/*Card Deck*/}
             <div className="container mt-5 pb-5" style={{marginTop: "5rem", marginBottom: "3rem" , backgroundColor: "black"}}>
-                {this.state.venues ? this.state.venues.map(
+                {this.state.musicians ? this.state.musicians.map(
                     (item,index) => {
                         console.log(item.user.name);
                         return(
 
                             // <div className="container" key={index}>
 
-                                <VenueCardFlip key={index} apitoken={this.props.apitoken} user={this.props.user} venueinfo={this.state.venues[index]}/>
+                                <MusicianCardFlip key={index} apitoken={this.props.apitoken} user={this.props.user} musicianinfo={this.state.musicians[index]}/>
 
                             // </div>
 
@@ -63,4 +63,4 @@ class SearchVenues extends React.Component{
 }
 
 
-export default SearchVenues;
+export default SearchMusicians;

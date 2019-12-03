@@ -24,7 +24,7 @@ class LoginComponent extends React.Component {
           .then(response => { const data = response.data; 
             this.setState({ data : data});
 
-            // console.log(this.state.data)
+            console.log(this.state.data)
             this.props.token(this.state.data);
             // console.log(response.data);
             localStorage.setItem('data', JSON.stringify(response.data))
@@ -50,7 +50,7 @@ class LoginComponent extends React.Component {
 
           
             <FontAwesomeIcon icon={faMusic} size='9x'/>
-            <h1 className='text-center display-2'>OneSet</h1>
+            <h1 className='text-center display-2' style={{fontFamily:'Poiret One, cursive'}}>OneSet</h1>
 
             <form onSubmit={this.SubmitHandler}>
                 <div className="form-group">
