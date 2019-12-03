@@ -17,7 +17,7 @@ class FooterComponent extends React.Component {
     }
 
     clickHandler(e) {
-        console.log(e.currentTarget.id);
+        // console.log(e.currentTarget.id);
         this.props.changepage(Number(e.currentTarget.id));
     }
 

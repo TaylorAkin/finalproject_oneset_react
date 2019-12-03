@@ -40,7 +40,7 @@ class DashboardComponent extends React.Component {
                 <HeaderComponent apitoken={this.props.apitoken} user={this.props.user} />
 
                 {this.state.page === 1 ? <Profile apitoken={this.props.apitoken} user={this.props.user} /> : null}
-                {this.state.page === 2 ? ( this.props.user.role==='musician' || this.props.user.musician ?
+                {this.state.page === 2 ? ( this.props.user.role==='musician' ?
                     <SearchVenues apitoken={this.props.apitoken} user={this.props.user} /> :
                     <SearchMusicians apitoken={this.props.apitoken} user={this.props.user} />)
                     : null
