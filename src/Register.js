@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMusic } from '@fortawesome/free-solid-svg-icons'
-// import { Button } from 'reactstrap';
 import { Button, ButtonGroup } from 'reactstrap';
 
 
@@ -27,7 +26,7 @@ class RegisterComponent extends React.Component {
 
         //set the state of role, if you clicked on musicain or venue
 
-        axios.post('http://127.0.0.1:8000/api/register', {
+        axios.post('https://oneset.appspot.com/api/register', {
             name: this.state.name,
             email: this.state.email,
             password: this.state.password,
@@ -37,8 +36,6 @@ class RegisterComponent extends React.Component {
             .then(response => {
                 const data = response.data;
                 this.setState({ data: data });
-                // console.log(this.state.data)
-                // localStorage.setItem('token', response.data.token)
                 localStorage.setItem('data', JSON.stringify(response.data))
                 this.props.apitoken(this.state.data);
             });
@@ -50,20 +47,20 @@ class RegisterComponent extends React.Component {
         const target = e.target;
         const value = target.value;
         const name = target.name;
-        // console.log(name, value);
+   
         this.setState({ [name]: value })
-        // console.log(this.state)
+      
     }
 
    async OnRoleChangeHandler(e) {
  //set state of role based on which button is clicked.
-//  console.log(e.target.name);
+
         if(e.target.name === 'musician'){
            await this.setState({role : 'musician'})
-            console.log(this.state.role);
+        
         } else if(e.target.name === 'venue'){
            await this.setState({role : 'venue'})
-            // console.log(this.state.role);
+          
         }
     }
 
@@ -72,11 +69,8 @@ class RegisterComponent extends React.Component {
         return (
             <React.Fragment>
 
-                {/* <button onClick = {this.props.switch} className="btn btn-primary"/> */}
                 <FontAwesomeIcon icon={faMusic} size='5x' />
                 <h1 className='text-center display-5' style={{fontFamily:'Poiret One, cursive'}}>OneSet</h1>
-
-
 
 
                 <form onSubmit={this.SubmitHandler}>
@@ -85,20 +79,12 @@ class RegisterComponent extends React.Component {
                 
                       <ButtonGroup>
 
-                            <Button onClick={this.OnRoleChangeHandler} color="primary" id="musician" name="musician" value="musician"> a Musician.</Button>
+                            <Button onClick={this.OnRoleChangeHandler} className="btn" color="primary" id="musician" name="musician" value="musician"  data-toggle="button" aria-pressed="false"> a Musician.</Button>
                        
-                            <Button onClick={this.OnRoleChangeHandler} color="primary" id="venue" name="venue" value="venue"> looking for one.</Button>
+                            <Button onClick={this.OnRoleChangeHandler}className="btn" color="primary" id="venue" name="venue" value="venue"  data-toggle="button" aria-pressed="false"> looking for one.</Button>
 
                       </ButtonGroup>
 
-                     {/* <div className="btn-group btn-group-toggle" data-toggle="buttons">
-                         <label className="btn btn-secondary active">
-                             <input type="radio" name="options" id="option1" autoComplete="off" /> Active
-                         </label>
-                         <label className="btn btn-secondary">
-                             <input type="radio" name="options" id="option2" autoComplete="off" /> Radio
-                         </label>
-                     </div> */}
 
 
                     <div className="form-group">
@@ -120,18 +106,11 @@ class RegisterComponent extends React.Component {
                 </form>
 
                 <h4 className='text-center'>Have an account?</h4>
-
                 <Button onClick={this.props.switch} className="btn-mdb-color">Login</Button>{' '}
-
-
-
 
             </React.Fragment>
 
-
         );
-
-
     }
 }
 

@@ -20,9 +20,6 @@ class MusicianCardFlip extends React.Component {
     }
    
 
-
-
-
     render() {
       return (
         
@@ -31,13 +28,12 @@ class MusicianCardFlip extends React.Component {
 
           <MusicianTeaser parentflip={this.handleClick} apitoken={this.props.apitoken} user={this.props.user} musicianinfo={this.props.musicianinfo}>
             This is the front of the card.
-            {/* <button onClick={this.handleClick}>Click to flip</button> */}
           </MusicianTeaser>
    
           <MusicianProfile parentflip={this.handleClick} apitoken={this.props.apitoken} user={this.props.user} musicianinfo={this.props.musicianinfo}>
             This is the back of the card.
-            {/* <button onClick={this.handleClick}>Click to flip</button> */}
           </MusicianProfile>
+
         </ReactCardFlip>
       )
     }

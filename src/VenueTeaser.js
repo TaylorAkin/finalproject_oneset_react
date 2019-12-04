@@ -11,12 +11,6 @@ class VenueTeaser extends React.Component {
         }
     }
 
-    componentDidMount(){
-       
-        // console.log(this.props.venueinfo);
-        // this.setState({venues: this.props.venueinfo})
-       
-    }
 
     changeParent = () => {
         this.props.parentflip();
@@ -61,5 +55,4 @@ class VenueTeaser extends React.Component {
     }
 }
     
-
 export default VenueTeaser;

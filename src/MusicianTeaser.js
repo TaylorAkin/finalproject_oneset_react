@@ -11,12 +11,6 @@ class MusicianTeaser extends React.Component {
         }
     }
 
-    componentDidMount(){
-       
-        console.log(this.props.musicianinfo.user.name);
-        // this.setState({venues: this.props.venueinfo})
-       
-    }
 
     changeParent = () => {
         this.props.parentflip();
@@ -35,22 +29,22 @@ class MusicianTeaser extends React.Component {
                     
                             {/*Card Image*/}
                         <div className="view overlay">
-                        <img className="card-img-top" src="/images/lex.jpeg" alt="Card"/>
-                        <a href="#!">
-                            <div className="mask rgba-white-slight"></div>
-                        </a>
+                            <img className="card-img-top" src="/images/tenorplayer.jpeg" alt="Card"/>
+                            <a href="#!">
+                                <div className="mask rgba-white-slight"></div>
+                            </a>
                         </div>
                     
                         {/*Card content */}
                         <div className="card-body">
                     
-                        {/*Title */}
-                        <h4 className="card-title text-center">{this.props.musicianinfo.user.name}</h4>
-                        {/*Text */}
-                        
-                        {/* Provides extra visual weight and identifies the primary action in a set of buttons*/}
-                        <button onClick={this.changeParent} type="button" className="btn btn-blue btn-md mx-auto" 
-                        style={{display: "block"}}>View Profile</button>
+                            {/*Title */}
+                            <h4 className="card-title text-center">{this.props.musicianinfo.user.name}</h4>
+                            {/*Text */}
+                            
+                            {/* Provides extra visual weight and identifies the primary action in a set of buttons*/}
+                            <button onClick={this.changeParent} type="button" className="btn btn-blue btn-md mx-auto" 
+                            style={{display: "block"}}>View Profile</button>
                     
                         </div>
                             

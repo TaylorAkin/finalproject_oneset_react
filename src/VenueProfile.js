@@ -14,8 +14,6 @@ class VenueProfile extends React.Component{
     }
     componentDidMount(){
        
-        console.log(this.props.venueinfo.user);
-        // this.setState({venueinfo: this.props.venueinfo.user})
         this.getvenueprofile();
        
     }
@@ -28,15 +26,15 @@ class VenueProfile extends React.Component{
        
         axios({
             method: 'get',
-            url: 'http://127.0.0.1:8000/api/profile/' + this.props.venueinfo.user.id, 
+            url: 'https://oneset.appspot.com/api/profile/' + this.props.venueinfo.user.id, 
             headers: {
                 Authorization: 'Bearer ' + this.props.apitoken,
             },
         })
         .then(res => {
-            // console.log(res.data.data[0].bio);
+           
             this.setState({ venuebio: res.data.data[0].bio})
-            console.log(this.state.venuebio);
+           
         });
     }
 
@@ -46,7 +44,6 @@ class VenueProfile extends React.Component{
 
         return(
 
-            // <div>{this.state.venuebio}</div>
            
             <React.Fragment>
             {/*Card Deck*/}
@@ -56,7 +53,7 @@ class VenueProfile extends React.Component{
                 
                         {/*Card Image*/}
                     <div className="view overlay">
-                    <img className="card-img-top" src="/images/lex.jpeg" alt="Card"/>
+                    <img className="card-img-top" src="/images/livemusic.jpeg" alt="Card"/>
                     <a href="#!">
                         <div className="mask rgba-white-slight"></div>
                     </a>
@@ -70,7 +67,7 @@ class VenueProfile extends React.Component{
                     {/*Bio */}
                     <p className="card-text text-center">{this.state.venuebio}</p>
 
-                    <h4 className="card-text">Contact Info</h4>
+                    <h5>Contact Info</h5>
 
                     <p className="card-text">{this.props.venueinfo.user.email}</p>
 
@@ -83,10 +80,8 @@ class VenueProfile extends React.Component{
                 </div>
             </div>
         </React.Fragment>
-
             
         )
-        
     }
 }
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'reactstrap';
 // import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCamera, faUpload } from '@fortawesome/free-solid-svg-icons'
@@ -13,7 +12,7 @@ class ProfilePicture extends React.Component {
             picture_path: '',
         
         };
-        //  this.onDrop = this.onDrop.bind(this);
+
          this.fileSelectedHandler =  this.fileSelectedHandler.bind(this);
          this.fileUploadHandler =  this.fileUploadHandler.bind(this);
     }
@@ -21,12 +20,11 @@ class ProfilePicture extends React.Component {
   
 
     fileSelectedHandler(e){
-        console.log(e.target.files[0]);
+      
         this.setState({picture_path: e.target.files[0]});
     }
 
     fileUploadHandler(e){
-        console.log(e);
        
        this.props.updateprofilepic(this.state.picture_path);
 
@@ -45,11 +43,11 @@ class ProfilePicture extends React.Component {
             id="fileToUpload"
             ref={fileInput => this.fileInput = fileInput} />
             <button onClick={() => this.fileInput.click()} style={{backgroundColor: 'white'}}>
-                    <FontAwesomeIcon icon={faCamera} size='2x' />
+                    <FontAwesomeIcon icon={faCamera} size='1x' />
             </button>
 
             <button onClick={this.fileUploadHandler} style={{backgroundColor: 'white'}}>
-                    <FontAwesomeIcon icon={faUpload} size='2x' />
+                    <FontAwesomeIcon icon={faUpload} size='1x' />
             </button>
           
 

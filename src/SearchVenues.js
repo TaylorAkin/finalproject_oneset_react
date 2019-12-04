@@ -19,15 +19,14 @@ class SearchVenues extends React.Component{
     getVenues(){
         axios({
             method: 'get',
-            url: 'http://127.0.0.1:8000/api/venues',
+            url: 'https://oneset.appspot.com/api/venues',
             headers: {
                 Authorization: 'Bearer ' + this.props.apitoken,
             },
         })
         .then(res => {
-            // console.log(res.data.data);
-            this.setState({venues: res.data.data})
-              console.log(this.state.venues);                
+            
+            this.setState({venues: res.data.data})               
 
         })
     }
@@ -40,14 +39,10 @@ class SearchVenues extends React.Component{
             <div className="container mt-5 pb-5" style={{marginTop: "5rem", marginBottom: "3rem" , backgroundColor: "black"}}>
                 {this.state.venues ? this.state.venues.map(
                     (item,index) => {
-                        console.log(item.user.name);
+
                         return(
 
-                            // <div className="container" key={index}>
-
                                 <VenueCardFlip key={index} apitoken={this.props.apitoken} user={this.props.user} venueinfo={this.state.venues[index]}/>
-
-                            // </div>
 
                         )
                     }
