@@ -19,8 +19,8 @@ class App extends React.Component {
     this.setLocalStorage = this.setLocalStorage.bind(this);
   }
 
-  switch(){
-    this.setState({login_view: !this.state.login_view})
+  switch() {
+    this.setState({ login_view: !this.state.login_view })
   }
 
   getTokenfromChildComponent(data) {
@@ -28,46 +28,49 @@ class App extends React.Component {
     this.setState({ data: data })
 
   }
-  async setLocalStorage(data){
+  async setLocalStorage(data) {
 
-    await this.setState({data:JSON.parse(data)});
+    await this.setState({ data: JSON.parse(data) });
 
   }
+
 
   componentDidMount() {
 
     this.setLocalStorage(localStorage.getItem('data'));
 
-}
+  }
 
   render() {
-   
+
     if (!this.state.data) {
 
       return (
 
         <div className="App">
           <header className="App-header">
-              {this.state.login_view ? 
-              <RegisterComponent switch = {this.switch} apitoken = {this.getTokenfromChildComponent} user = {this.props.user} /> :
-              <LoginComponent switch = {this.switch} token={this.getTokenfromChildComponent} user = {this.props.user}/>}
+            {this.state.login_view ?
+              <RegisterComponent switch={this.switch} apitoken={this.getTokenfromChildComponent} user={this.props.user} /> :
+              <LoginComponent switch={this.switch} token={this.getTokenfromChildComponent} user={this.props.user} />}
           </header>
 
         </div>
       );
 
-    } else{
-        return(
-        
+    } else {
+      return (
+
         <DashboardComponent
-         apitoken = {this.state.data.token} 
-        user = {this.state.data.user} 
-        data={this.state.data}
+          apitoken={this.state.data.token}
+          user={this.state.data.user}
+          data={this.state.data}
+          getTokenfromChildComponent={this.getTokenfromChildComponent}
         />
 
-      );}
+      );
+    }
 
-    };
-  }
+  };
+}
 
 export default App;

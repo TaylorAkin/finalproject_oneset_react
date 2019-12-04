@@ -43,7 +43,7 @@ class DashboardComponent extends React.Component {
                 {this.state.page === 3 ? <MyPingsComponent apitoken={this.props.apitoken} user={this.props.user} /> : null}
                 {this.state.page === 4 ? <Profile apitoken={this.props.apitoken} user={this.props.user} /> : null}
 
-                <FooterComponent apitoken={this.props.apitoken} user={this.props.user} changepage={this.setPageState} />
+                <FooterComponent getTokenfromChildComponent={this.props.getTokenfromChildComponent} apitoken={this.props.apitoken} user={this.props.user} changepage={this.setPageState} />
 
 
 
