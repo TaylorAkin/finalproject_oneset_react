@@ -16,7 +16,7 @@ class FooterComponent extends React.Component {
     }
 
     clickHandler(e) {
-       
+
         this.props.changepage(Number(e.currentTarget.id));
     }
 
@@ -32,10 +32,10 @@ class FooterComponent extends React.Component {
                         <div className="col-3">
                             <div className="dropup">
                                 <button className="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      <FontAwesomeIcon icon={faCog} size='3x' />
+                                    <FontAwesomeIcon icon={faCog} size='3x' />
                                 </button>
                                 <div className="btn btn-dark dropdown-menu">
-                                  <LogoutComponent apitoken={this.props.apitoken}/>
+                                    <LogoutComponent getTokenfromChildComponent={this.props.getTokenfromChildComponent} apitoken={this.props.apitoken} />
                                 </div>
                             </div>
                         </div>

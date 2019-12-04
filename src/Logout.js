@@ -16,8 +16,8 @@ class LogoutComponent extends React.Component {
     }
 
     SubmitHandler(e) {
+        
         localStorage.removeItem('data');
-
         axios({
             method: 'get',
             url: 'https://oneset.appspot.com/api/logout',
@@ -26,9 +26,8 @@ class LogoutComponent extends React.Component {
             },
         })
             .then(res => {
-                this.setState({
-                    token: ''
-                })
+                
+                this.props.getTokenfromChildComponent('');
 
             });
 
