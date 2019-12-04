@@ -13,7 +13,7 @@ class VenueTeaser extends React.Component {
 
     componentDidMount(){
        
-        console.log(this.props.venueinfo.user.name);
+        // console.log(this.props.venueinfo);
         // this.setState({venues: this.props.venueinfo})
        
     }
