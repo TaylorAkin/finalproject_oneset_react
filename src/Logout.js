@@ -1,65 +1,52 @@
 import React from 'react';
 import axios from 'axios';
-import { Button } from 'reactstrap';
-
-
 
 
 class LogoutComponent extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state= {
-            email: '' ,
+        this.state = {
+            email: '',
             password: '',
+            token: '',
         }
-        // this.SubmitHandler=this.SubmitHandler.bind(this);
+        this.SubmitHandler = this.SubmitHandler.bind(this);
+
     }
 
-        SubmitHandler(e) {
-        // post request for laravel api call
-        // console.log('Bearer ' + this.props.apitoken);
+    SubmitHandler(e) {
         localStorage.removeItem('data');
+
         axios({
             method: 'get',
-            url: 'http://127.0.0.1:8000/api/logout',
+            url: 'https://oneset.appspot.com/api/logout',
             headers: {
                 Authorization: 'Bearer ' + this.props.apitoken,
             },
         })
             .then(res => {
-                // prepare new menu item array
-                let emailArr = res.data;
-                // console.log(emailArr);
-                if(emailArr){
-                    this.setState({ data: ''});
-                }
-                
+                this.setState({
+                    token: ''
+                })
 
             });
 
-            e.preventDefault();
+        e.preventDefault();
 
-        }
+    }
 
-    
-    render(){
-            // console.log(this.props.apitoken)
-        return(
-           <React.Fragment>
+    render() {
+      
+        return (
+            <React.Fragment>
 
-            <form onSubmit={this.SubmitHandler}>
-            
-                <Button type="submit" color="dark">Logout</Button>{' '}
+                <form onSubmit={this.SubmitHandler}>
+                    <button type="submit" color="dark">Logout</button>
+                </form>
 
-            </form>
-
-           </React.Fragment>
-
-
+            </React.Fragment>
         );
-
-
     }
 }
 

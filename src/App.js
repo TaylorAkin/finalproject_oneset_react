@@ -3,10 +3,6 @@ import LoginComponent from './Login';
 import DashboardComponent from './Dashboard';
 import './App.css';
 import RegisterComponent from './Register';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
-
-
 
 
 class App extends React.Component {
@@ -24,7 +20,6 @@ class App extends React.Component {
   }
 
   switch(){
-  
     this.setState({login_view: !this.state.login_view})
   }
 
@@ -46,29 +41,23 @@ class App extends React.Component {
 }
 
   render() {
-    // console.log(this.state.data);
+   
     if (!this.state.data) {
 
       return (
 
         <div className="App">
           <header className="App-header">
-   
-           {this.state.login_view ? 
-           <RegisterComponent switch = {this.switch} apitoken = {this.getTokenfromChildComponent} user = {this.props.user} /> :
-           <LoginComponent switch = {this.switch} token={this.getTokenfromChildComponent} user = {this.props.user}/>}
-
-
-
+              {this.state.login_view ? 
+              <RegisterComponent switch = {this.switch} apitoken = {this.getTokenfromChildComponent} user = {this.props.user} /> :
+              <LoginComponent switch = {this.switch} token={this.getTokenfromChildComponent} user = {this.props.user}/>}
           </header>
 
         </div>
       );
 
     } else{
-
-      console.log(this.state.data);
-      return(
+        return(
         
         <DashboardComponent
          apitoken = {this.state.data.token} 
@@ -76,8 +65,7 @@ class App extends React.Component {
         data={this.state.data}
         />
 
-      );
-    }
+      );}
 
     };
   }
