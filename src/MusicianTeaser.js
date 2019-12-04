@@ -35,7 +35,7 @@ class MusicianTeaser extends React.Component {
                     
                             {/*Card Image*/}
                         <div className="view overlay">
-                        <img className="card-img-top" src="/images/lex.jpeg" alt="Card"/>
+                        <img className="card-img-top" src="/images/tenorplayer.jpeg" alt="Card"/>
                         <a href="#!">
                             <div className="mask rgba-white-slight"></div>
                         </a>

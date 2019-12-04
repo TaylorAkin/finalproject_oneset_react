@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'reactstrap';
 // import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCamera, faUpload } from '@fortawesome/free-solid-svg-icons'
@@ -45,11 +44,11 @@ class ProfilePicture extends React.Component {
             id="fileToUpload"
             ref={fileInput => this.fileInput = fileInput} />
             <button onClick={() => this.fileInput.click()} style={{backgroundColor: 'white'}}>
-                    <FontAwesomeIcon icon={faCamera} size='2x' />
+                    <FontAwesomeIcon icon={faCamera} size='1x' />
             </button>
 
             <button onClick={this.fileUploadHandler} style={{backgroundColor: 'white'}}>
-                    <FontAwesomeIcon icon={faUpload} size='2x' />
+                    <FontAwesomeIcon icon={faUpload} size='1x' />
             </button>
           
 

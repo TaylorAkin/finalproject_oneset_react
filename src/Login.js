@@ -20,7 +20,7 @@ class LoginComponent extends React.Component {
     }
         SubmitHandler(e) {
         // post request for laravel api call
-        axios.post('http://127.0.0.1:8000/api/login' , {email: this.state.email , password:this.state.password})
+        axios.post('https://oneset.appspot.com/api/login' , {email: this.state.email , password:this.state.password})
           .then(response => { const data = response.data; 
             this.setState({ data : data});
 

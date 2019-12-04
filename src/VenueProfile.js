@@ -28,7 +28,7 @@ class VenueProfile extends React.Component{
        
         axios({
             method: 'get',
-            url: 'http://127.0.0.1:8000/api/profile/' + this.props.venueinfo.user.id, 
+            url: 'https://oneset.appspot.com/api/profile/' + this.props.venueinfo.user.id, 
             headers: {
                 Authorization: 'Bearer ' + this.props.apitoken,
             },
@@ -56,7 +56,7 @@ class VenueProfile extends React.Component{
                 
                         {/*Card Image*/}
                     <div className="view overlay">
-                    <img className="card-img-top" src="/images/lex.jpeg" alt="Card"/>
+                    <img className="card-img-top" src="/images/livemusic.jpeg" alt="Card"/>
                     <a href="#!">
                         <div className="mask rgba-white-slight"></div>
                     </a>

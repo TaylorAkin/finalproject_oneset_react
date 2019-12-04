@@ -32,7 +32,7 @@ class ProfileComponent extends React.Component {
         this.getBio()
         this.getTags();
         this.setState({ selectedtags: this.props.user.musicianTags });
-        // console.log(this.props.user);
+        console.log(this.props.user);
         // console.log(this.props.user.role);
         // this.setState({ bio: localStorage.getItem('bio') });
 
@@ -58,7 +58,7 @@ class ProfileComponent extends React.Component {
             await this.setState({ bio: this.props.user.profile[0].bio });
 
         } else {
-            this.setState({ bio: "Add a bio" });
+            this.setState({ bio: "Add a bio - click outside to save" });
         }
     }
 
@@ -75,7 +75,7 @@ class ProfileComponent extends React.Component {
             bio: this.state.bio,
             picture_path: this.state.picture_path,
         };
-        axios.post('http://127.0.0.1:8000/api/profile/' + this.props.user.id, data, {
+        axios.post('https://oneset.appspot.com/api/profile/' + this.props.user.id, data, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ class ProfileComponent extends React.Component {
         
         axios({
             method: 'get',
-            url: 'http://127.0.0.1:8000/api/tags/',
+            url: 'https://oneset.appspot.com/api/tags/',
             headers: {
                 Authorization: 'Bearer ' + this.props.apitoken,
             },
@@ -146,7 +146,7 @@ class ProfileComponent extends React.Component {
             'musician_id': this.props.user.id
         };
         console.log(data);
-        axios.post('http://127.0.0.1:8000/api/mytags', data, {
+        axios.post('https://oneset.appspot.com/api/mytags', data, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -191,7 +191,10 @@ class ProfileComponent extends React.Component {
 
                             </div>
                             <div className='col-4 ml-3'>
-                                <img src='/images/avatar.jpeg' alt='profile pic' className='border rounded-circle' />
+                            {this.props.user.role === 'musician' ? 
+                                <img src='/images/profilepic225.jpg' alt='profile pic' className='border rounded-circle' /> :
+                                <img src='/images/lex220.jpg' alt='profile pic' className='border rounded-circle' style={{borderRadius:'50%'}} />
+                            }
                             </div>
                             <div className='col-7'>
 
@@ -227,7 +230,14 @@ class ProfileComponent extends React.Component {
 
                         </React.Fragment>
                         :
-                        <CalendarComponent />
+                        <React.Fragment>
+                            <CalendarComponent />
+                            <div className="container mt-5">
+                                <div className="row ml-2">
+                                    <YoutubeComponent className="mt-5 mx-auto" />
+                                </div>
+                            </div>
+                        </React.Fragment>
                     }
 
                 </div>

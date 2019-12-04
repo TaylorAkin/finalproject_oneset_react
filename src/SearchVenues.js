@@ -19,7 +19,7 @@ class SearchVenues extends React.Component{
     getVenues(){
         axios({
             method: 'get',
-            url: 'http://127.0.0.1:8000/api/venues',
+            url: 'https://oneset.appspot.com/api/venues',
             headers: {
                 Authorization: 'Bearer ' + this.props.apitoken,
             },

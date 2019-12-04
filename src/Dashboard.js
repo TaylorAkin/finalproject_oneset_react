@@ -4,6 +4,7 @@ import FooterComponent from './Footer';
 import Profile from './Profile';
 import SearchVenues from './SearchVenues';
 import SearchMusicians from './SearchMusicians'
+import MyPingsComponent from './MyPings';
 
 
 
@@ -45,7 +46,7 @@ class DashboardComponent extends React.Component {
                     <SearchMusicians apitoken={this.props.apitoken} user={this.props.user} />)
                     : null
                 }
-                {this.state.page === 3 ? <Profile apitoken={this.props.apitoken} user={this.props.user} /> : null}
+                {this.state.page === 3 ? <MyPingsComponent apitoken={this.props.apitoken} user={this.props.user} /> : null}
                 {this.state.page === 4 ? <Profile apitoken={this.props.apitoken} user={this.props.user} /> : null}
 
                 <FooterComponent apitoken={this.props.apitoken} user={this.props.user} changepage={this.setPageState} />

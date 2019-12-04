@@ -27,7 +27,7 @@ class HeaderComponent extends React.Component {
                        
                         <div className="col-12">
                             <h1 className='text-center text-white' style={{fontFamily:'Poiret One, cursive'}}>OneSet</h1>
-                            {/* <LogoutComponent apitoken={this.props.apitoken}/> */}
+                           
                         </div>
                    
                     
