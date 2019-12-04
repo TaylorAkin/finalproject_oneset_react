@@ -32,11 +32,6 @@ class ProfileComponent extends React.Component {
         this.getBio()
         this.getTags();
         this.setState({ selectedtags: this.props.user.musicianTags });
-        console.log(this.props.user);
-        // console.log(this.props.user.role);
-        // this.setState({ bio: localStorage.getItem('bio') });
-
-        // this.setState({bio: this.props.user.profile[0].bio});
 
     }
 
@@ -44,7 +39,7 @@ class ProfileComponent extends React.Component {
         const target = e.target;
         const value = target.value;
         const name = target.name;
-        console.log(e.target);
+    
         this.setState({ [name]: value })
     }
 
@@ -68,7 +63,7 @@ class ProfileComponent extends React.Component {
 
 
     updateProfile(e) {
-        console.log(e.name);
+        
         this.setState({ picture_path: e.name })
 
         var data = {
@@ -84,7 +79,7 @@ class ProfileComponent extends React.Component {
             },
         })
             .then(res => {
-                console.log(JSON.parse(res.config.data));
+            
                 localStorage.setItem('bio', JSON.parse(res.config.data).bio)
                 this.setState({ bio: JSON.parse(res.config.data).bio });
 
@@ -104,7 +99,7 @@ class ProfileComponent extends React.Component {
             },
         })
             .then(res => {
-                // console.log(res.data);
+               
                 this.setState({ tagarray: res.data.data })
 
             });
@@ -115,15 +110,15 @@ class ProfileComponent extends React.Component {
                 var tmpTags = [];
                 for (var i = 0; i < this.props.user.musicianTags.length; i++) {
                     tmpTags.push(this.props.user.musicianTags[i]);
-                    //console.log(this.props.user.musicianTags[i]);
+                
                 }
                 this.setState({ selectedtags: tmpTags })
             }
             else {
-                console.log('no tags');
+              
             }
         }
-        // e.preventDefault();
+       
 
     }
 
@@ -155,7 +150,7 @@ class ProfileComponent extends React.Component {
             },
         })
             .then(res => {
-                console.log(res.data);
+               
                 var newTags = res.data;
                 // replace
                 this.props.user.musicianTags = newTags;
@@ -169,7 +164,7 @@ class ProfileComponent extends React.Component {
                     selectedtags.push({ 'tag_id': newTags[i].tag_id });
 
                 }
-                console.log(selectedtags);
+                
                 this.setState({ selectedtags: selectedtags });
 
             });
@@ -186,19 +181,15 @@ class ProfileComponent extends React.Component {
                 <div className="container pt-5" style={{ paddingBottom: "23rem", backgroundColor: "black" }}>
                     <div className='container py-4 text-center mt-4 text-white'>
 
-                        <div className='row'>
-                            <div className='col-1'>
-
-                            </div>
-                            <div className='col-4 ml-3'>
+                        <div className='row justify-content-center'>
+                        
+                            <div>
                             {this.props.user.role === 'musician' ? 
                                 <img src='/images/profilepic225.jpg' alt='profile pic' className='border rounded-circle' /> :
                                 <img src='/images/lex220.jpg' alt='profile pic' className='border rounded-circle' style={{borderRadius:'50%'}} />
                             }
                             </div>
-                            <div className='col-7'>
-
-                            </div>
+                           
                         </div>
                         <div className='row justify-content-center'>
                             <ProfilePicture apitoken={this.props.apitoken} user={this.props.user} updateprofilepic={this.updateProfile}
@@ -223,7 +214,7 @@ class ProfileComponent extends React.Component {
                             <TagsComponent mytags={this.myTags} tagarray={this.state.tagarray} selectedtags={this.state.selectedtags} />
                             <div className="container mt-5">
                                 <div className="row ml-2">
-                                    <YoutubeComponent className="mt-5 mx-auto" />
+                                    <YoutubeComponent className="mt-5 mx-auto" user={this.props.user} />
                                 </div>
 
                             </div>
@@ -234,7 +225,7 @@ class ProfileComponent extends React.Component {
                             <CalendarComponent />
                             <div className="container mt-5">
                                 <div className="row ml-2">
-                                    <YoutubeComponent className="mt-5 mx-auto" />
+                                    <YoutubeComponent className="mt-5 mx-auto" user={this.props.user} />
                                 </div>
                             </div>
                         </React.Fragment>

@@ -12,7 +12,7 @@ class ProfilePicture extends React.Component {
             picture_path: '',
         
         };
-        //  this.onDrop = this.onDrop.bind(this);
+
          this.fileSelectedHandler =  this.fileSelectedHandler.bind(this);
          this.fileUploadHandler =  this.fileUploadHandler.bind(this);
     }
@@ -20,12 +20,11 @@ class ProfilePicture extends React.Component {
   
 
     fileSelectedHandler(e){
-        console.log(e.target.files[0]);
+      
         this.setState({picture_path: e.target.files[0]});
     }
 
     fileUploadHandler(e){
-        console.log(e);
        
        this.props.updateprofilepic(this.state.picture_path);
 

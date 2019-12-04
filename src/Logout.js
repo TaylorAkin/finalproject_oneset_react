@@ -4,31 +4,20 @@ import axios from 'axios';
 
 class LogoutComponent extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state= {
-            email: '' ,
+        this.state = {
+            email: '',
             password: '',
             token: '',
         }
-        // this.SubmitHandler=this.SubmitHandler.bind(this);
-       
+        this.SubmitHandler = this.SubmitHandler.bind(this);
+
     }
 
-      componentDidMount(){
-       
-        //  var token = this.props.apitoken;
-         this.setState({token: this.props.apitoken})
-        //  console.log(this.state.token);
-        
-    }
-    
+    SubmitHandler(e) {
+        localStorage.removeItem('data');
 
-
-        SubmitHandler(e) {
-       
-        // console.log(this.state.token);
-         localStorage.removeItem('data');
         axios({
             method: 'get',
             url: 'https://oneset.appspot.com/api/logout',
@@ -37,38 +26,27 @@ class LogoutComponent extends React.Component {
             },
         })
             .then(res => {
-                // prepare new menu item array
-                let emailArr = res.data;
-                // console.log(emailArr);
-                if(emailArr){
-                    this.setState({ data: ''});
-                }
-                
+                this.setState({
+                    token: ''
+                })
 
             });
 
-            e.preventDefault();
+        e.preventDefault();
 
-        }
+    }
 
-    
-    render(){
-            // console.log(this.props.apitoken)
-        return(
-           <React.Fragment>
+    render() {
+      
+        return (
+            <React.Fragment>
 
-            <form onSubmit={this.SubmitHandler}>
-            
-                <button type="submit" color="dark">Logout</button>
+                <form onSubmit={this.SubmitHandler}>
+                    <button type="submit" color="dark">Logout</button>
+                </form>
 
-            </form>
-
-           </React.Fragment>
-
-
+            </React.Fragment>
         );
-
-
     }
 }
 

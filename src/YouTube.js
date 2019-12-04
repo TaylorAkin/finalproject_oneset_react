@@ -5,7 +5,7 @@ import { faUpload } from '@fortawesome/free-solid-svg-icons'
 
 class YoutubeComponent extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       youtubelink: ''
@@ -13,8 +13,9 @@ class YoutubeComponent extends React.Component {
     }
   }
 
-  SubmitHandler(e){
-    console.log('ta')
+
+  SubmitHandler(e) {
+    
   }
 
 
@@ -32,25 +33,31 @@ class YoutubeComponent extends React.Component {
     return (
       <React.Fragment>
 
-        <h3 className='text-white mx-auto' >My Media</h3> 
+        <h3 className='text-white mx-auto' >My Media</h3>
 
         <form className="form-inline mx-auto" onSubmit={this.SubmitHandler}>
           <div className="form-group mx-sm-3 mb-2">
             <label htmlFor="youtubelink" className="sr-only">YouTube</label>
-            <input type="text" className="form-control" id="inputPassword2" name='YouTubelink' placeholder="place link->under construction"/>
+            <input type="text" className="form-control" id="inputPassword2" name='YouTubelink' placeholder="place link" />
           </div>
           <button type="submit" className="btn btn-primary btn-sm mb-3">
             <FontAwesomeIcon icon={faUpload} size='1x' />
           </button>
         </form>
 
+        {this.props.user.role==='musician' ?
+          <YouTube
+            videoId="cNZvtVwRzts"
+            opts={opts}
+            onReady={this._onReady}
+          /> :
+          <YouTube
+            videoId="M4BWb_GQy0E"
+            opts={opts}
+            onReady={this._onReady}
+          />
 
-        <YouTube
-          videoId="THGvWuI56aA"
-          opts={opts}
-          onReady={this._onReady}
-        />
-
+        }
       </React.Fragment>
     );
   }

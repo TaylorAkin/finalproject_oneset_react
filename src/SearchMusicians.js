@@ -25,9 +25,8 @@ class SearchMusicians extends React.Component{
             },
         })
         .then(res => {
-            console.log(res.data.data);
-            this.setState({musicians: res.data.data})
-              console.log(this.state.musicians);                
+            
+            this.setState({musicians: res.data.data})             
 
         })
     }
@@ -40,14 +39,10 @@ class SearchMusicians extends React.Component{
             <div className="container mt-5 pb-5" style={{marginTop: "5rem", marginBottom: "3rem" , backgroundColor: "black"}}>
                 {this.state.musicians ? this.state.musicians.map(
                     (item,index) => {
-                        console.log(item.user.name);
+                      
                         return(
 
-                            // <div className="container" key={index}>
-
                                 <MusicianCardFlip key={index} apitoken={this.props.apitoken} user={this.props.user} musicianinfo={this.state.musicians[index]}/>
-
-                            // </div>
 
                         )
                     }

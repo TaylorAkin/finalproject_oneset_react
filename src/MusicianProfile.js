@@ -14,8 +14,6 @@ class MusicianProfile extends React.Component {
     }
     componentDidMount() {
 
-        console.log(this.props.user);
-        // this.setState({musicianinfo: this.props.musicianinfo.user})
         this.getmusicianprofile();
 
     }
@@ -34,19 +32,15 @@ class MusicianProfile extends React.Component {
             },
         })
             .then(res => {
-                // console.log(res.data.data[0].bio);
+               
                 this.setState({ musicianbio: res.data.data[0].bio })
-                console.log(this.state.musicianbio);
+               
             });
     }
-
-
 
     render() {
 
         return (
-
-            // <div>{this.state.venuebio}</div>
 
             <React.Fragment>
                 {/*Card Deck*/}
@@ -70,7 +64,7 @@ class MusicianProfile extends React.Component {
                             {/*Bio */}
                             <p className="card-text text-center">{this.state.musicianbio}</p>
 
-                            {/* <h1 className="card-text">Contact Info</h1> */}
+                            <h5>Contact Info</h5>
 
                             <p className="card-text">{this.props.musicianinfo.user.email}</p>
 
@@ -80,15 +74,12 @@ class MusicianProfile extends React.Component {
 
                         </div>
 
-
-
                     </div>
+
                 </div>
+
             </React.Fragment>
-
-
         )
-
     }
 }
 

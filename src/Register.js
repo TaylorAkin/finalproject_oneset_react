@@ -36,8 +36,6 @@ class RegisterComponent extends React.Component {
             .then(response => {
                 const data = response.data;
                 this.setState({ data: data });
-                // console.log(this.state.data)
-                // localStorage.setItem('token', response.data.token)
                 localStorage.setItem('data', JSON.stringify(response.data))
                 this.props.apitoken(this.state.data);
             });
@@ -49,20 +47,20 @@ class RegisterComponent extends React.Component {
         const target = e.target;
         const value = target.value;
         const name = target.name;
-        // console.log(name, value);
+   
         this.setState({ [name]: value })
-        // console.log(this.state)
+      
     }
 
    async OnRoleChangeHandler(e) {
  //set state of role based on which button is clicked.
-//  console.log(e.target.name);
+
         if(e.target.name === 'musician'){
            await this.setState({role : 'musician'})
-            // console.log(this.state.role);
+        
         } else if(e.target.name === 'venue'){
            await this.setState({role : 'venue'})
-            // console.log(this.state.role);
+          
         }
     }
 
@@ -71,11 +69,8 @@ class RegisterComponent extends React.Component {
         return (
             <React.Fragment>
 
-                {/* <button onClick = {this.props.switch} className="btn btn-primary"/> */}
                 <FontAwesomeIcon icon={faMusic} size='5x' />
                 <h1 className='text-center display-5' style={{fontFamily:'Poiret One, cursive'}}>OneSet</h1>
-
-
 
 
                 <form onSubmit={this.SubmitHandler}>
@@ -111,18 +106,11 @@ class RegisterComponent extends React.Component {
                 </form>
 
                 <h4 className='text-center'>Have an account?</h4>
-
                 <Button onClick={this.props.switch} className="btn-mdb-color">Login</Button>{' '}
-
-
-
 
             </React.Fragment>
 
-
         );
-
-
     }
 }
 

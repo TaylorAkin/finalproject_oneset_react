@@ -14,8 +14,6 @@ class VenueProfile extends React.Component{
     }
     componentDidMount(){
        
-        console.log(this.props.venueinfo.user);
-        // this.setState({venueinfo: this.props.venueinfo.user})
         this.getvenueprofile();
        
     }
@@ -34,9 +32,9 @@ class VenueProfile extends React.Component{
             },
         })
         .then(res => {
-            // console.log(res.data.data[0].bio);
+           
             this.setState({ venuebio: res.data.data[0].bio})
-            console.log(this.state.venuebio);
+           
         });
     }
 
@@ -46,7 +44,6 @@ class VenueProfile extends React.Component{
 
         return(
 
-            // <div>{this.state.venuebio}</div>
            
             <React.Fragment>
             {/*Card Deck*/}
@@ -70,7 +67,7 @@ class VenueProfile extends React.Component{
                     {/*Bio */}
                     <p className="card-text text-center">{this.state.venuebio}</p>
 
-                    <h4 className="card-text">Contact Info</h4>
+                    <h5>Contact Info</h5>
 
                     <p className="card-text">{this.props.venueinfo.user.email}</p>
 
@@ -83,10 +80,8 @@ class VenueProfile extends React.Component{
                 </div>
             </div>
         </React.Fragment>
-
             
         )
-        
     }
 }
 

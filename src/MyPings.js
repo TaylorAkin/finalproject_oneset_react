@@ -8,9 +8,6 @@ class MyPingsComponent extends React.Component {
         }
     }
 
-    componentDidMount() {
-        console.log(this.props.user);
-    }
 
     render() {
         return (
@@ -78,17 +75,17 @@ class MyPingsComponent extends React.Component {
                             <tbody>
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td>Taylor Akin</td>
+                                    <td>Daniel Shouse</td>
                                     <td>12/12/19</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">2</th>
-                                    <td>Ian Rios</td>
+                                    <td>Liam Clark</td>
                                     <td>12/16/19</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">3</th>
-                                    <td>Keith McMunn</td>
+                                    <td>James Younger</td>
                                     <td>12/28/19</td>
                                 </tr>
                             </tbody>
@@ -97,10 +94,6 @@ class MyPingsComponent extends React.Component {
                     </div>}
 
             </React.Fragment>
-
-
-
-
 
         )
     }

@@ -7,8 +7,6 @@ import SearchMusicians from './SearchMusicians'
 import MyPingsComponent from './MyPings';
 
 
-
-
 class DashboardComponent extends React.Component {
 
 
@@ -21,10 +19,6 @@ class DashboardComponent extends React.Component {
         this.setPageState = this.setPageState.bind(this);
     }
 
-    componentDidMount() {
-        // console.log(this.props.data);
-        // console.log(this.props.user.musician);
-    }
 
     setPageState(page) {
         this.setState({ page: page })
@@ -56,12 +50,7 @@ class DashboardComponent extends React.Component {
             </React.Fragment>
 
         )
-
     }
-
 }
-
-
-
 
 export default DashboardComponent;
